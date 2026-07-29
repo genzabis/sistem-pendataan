@@ -15,10 +15,20 @@ export function Sidebar() {
   const role = (session?.user as any)?.role || "ADMIN";
   
   return (
-    <div className={cn(
-      "h-screen bg-white border-r flex flex-col justify-between shrink-0 transition-all duration-300 print:hidden",
-      isSidebarOpen ? "w-64" : "w-20"
-    )}>
+    <>
+      {/* Overlay on mobile when sidebar is open */}
+      <div 
+        className={cn(
+          "fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity",
+          isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+        onClick={() => useUiStore.getState().toggleSidebar()}
+      />
+      
+      <div className={cn(
+        "h-screen bg-white border-r flex flex-col justify-between shrink-0 transition-all duration-300 print:hidden absolute z-50 md:relative",
+        isSidebarOpen ? "w-64 translate-x-0 shadow-2xl md:shadow-none" : "-translate-x-full md:translate-x-0 w-64 md:w-20"
+      )}>
       <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
         <div className="p-6 shrink-0 flex flex-col items-center text-center">
           <img 
@@ -108,5 +118,6 @@ export function Sidebar() {
         </div>
       </div>
     </div>
+    </>
   );
 }
