@@ -213,6 +213,7 @@ export default function WargaPage() {
         open={isEditDialogOpen} 
         onOpenChange={setIsEditDialogOpen} 
         initialData={editWarga || undefined} 
+        trigger={<span className="hidden"></span>}
       />
     </div>
   );
