@@ -44,7 +44,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative flex h-screen w-full overflow-hidden bg-white">
+    <div className="relative flex h-dvh w-full overflow-hidden bg-white">
       {/* Background layer */}
       <div className="absolute inset-0 flex pointer-events-none">
         <div className="hidden lg:block w-1/2 bg-primary"></div>

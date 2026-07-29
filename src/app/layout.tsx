@@ -32,7 +32,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="h-screen w-full flex flex-col overflow-hidden bg-gray-50/30">
+      <body className="h-dvh w-full flex flex-col overflow-hidden bg-gray-50/30">
         <svg width="0" height="0" className="absolute w-0 h-0 invisible">
           <filter id="white-stroke" x="-20%" y="-20%" width="140%" height="140%">
             <feMorphology in="SourceAlpha" operator="dilate" radius="2.5" result="DILATE" />

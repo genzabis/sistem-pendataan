@@ -131,7 +131,7 @@ function CetakSuratContent() {
 
 export default function CetakSuratPage() {
   return (
-    <Suspense fallback={<div className="flex h-screen items-center justify-center bg-gray-100">Memuat Dokumen...</div>}>
+    <Suspense fallback={<div className="flex h-dvh items-center justify-center bg-gray-100">Memuat Dokumen...</div>}>
       <CetakSuratContent />
     </Suspense>
   );
