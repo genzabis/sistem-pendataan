@@ -74,17 +74,17 @@ export default function WargaPage() {
 
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      <div className="flex items-center justify-between space-y-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-primary">Data Penduduk</h2>
-          <p className="text-muted-foreground mt-1">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary">Data Penduduk</h2>
+          <p className="text-sm sm:text-base text-muted-foreground mt-1">
             Kelola data induk kependudukan Desa Sukamulya.
           </p>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 self-start sm:self-auto">
           <Button variant="outline" className="text-gray-600 hover:bg-gray-50" onClick={handleExportCSV}>
-            <FileDown className="mr-2 h-4 w-4" />
-            Export CSV
+            <FileDown className="mr-2 h-4 w-4 shrink-0" />
+            <span className="hidden sm:inline">Export CSV</span>
           </Button>
           <WargaFormDialog />
         </div>
