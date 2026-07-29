@@ -26,10 +26,10 @@ export function Sidebar() {
       />
       
       <div className={cn(
-        "h-dvh overflow-hidden bg-white border-r flex flex-col justify-between shrink-0 transition-all duration-300 print:hidden fixed inset-y-0 left-0 z-50 md:relative md:h-full",
+        "h-full overflow-hidden bg-white border-r flex flex-col justify-between shrink-0 transition-all duration-300 print:hidden fixed inset-y-0 left-0 z-50 md:relative md:h-full",
         isSidebarOpen ? "w-64 translate-x-0 shadow-2xl md:shadow-none" : "-translate-x-full md:translate-x-0 w-64 md:w-20"
       )}>
-      <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden relative">
+      <div className="flex flex-col flex-1 min-h-0 overflow-y-auto overflow-x-hidden relative">
         <button 
           onClick={() => useUiStore.getState().toggleSidebar()}
           className="md:hidden absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-700 bg-gray-50 rounded-full z-10"
