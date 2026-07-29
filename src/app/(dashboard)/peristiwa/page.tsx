@@ -20,7 +20,7 @@ const kelahiranSchema = z.object({
   nikAyah: z.string().length(16, "NIK Ayah harus 16 digit"),
   nikIbu: z.string().length(16, "NIK Ibu harus 16 digit"),
   tempatDilahirkan: z.string().min(3, "Tempat dilahirkan wajib diisi"),
-  jenisKelamin: z.enum(["L", "P"], { invalid_type_error: "Pilih jenis kelamin" }),
+  jenisKelamin: z.enum(["L", "P"], { message: "Pilih jenis kelamin" }),
 });
 
 const kematianSchema = z.object({
@@ -32,7 +32,7 @@ const kematianSchema = z.object({
 });
 
 const pindahSchema = z.object({
-  jenisPindah: z.enum(["KELUAR", "MASUK"], { invalid_type_error: "Pilih jenis pindah" }),
+  jenisPindah: z.enum(["KELUAR", "MASUK"], { message: "Pilih jenis pindah" }),
   nikKk: z.string().length(16, "NIK/No KK harus 16 digit"),
   tanggalPindah: z.string().min(1, "Tanggal pindah wajib diisi"),
   alamatTujuan: z.string().min(5, "Alamat tujuan/asal wajib diisi"),
