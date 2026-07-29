@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Printer, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function CetakSuratPage() {
+function CetakSuratContent() {
   const searchParams = useSearchParams();
   const [isReady, setIsReady] = useState(false);
 
@@ -126,5 +126,13 @@ export default function CetakSuratPage() {
 
       </div>
     </div>
+  );
+}
+
+export default function CetakSuratPage() {
+  return (
+    <Suspense fallback={<div className="flex h-screen items-center justify-center bg-gray-100">Memuat Dokumen...</div>}>
+      <CetakSuratContent />
+    </Suspense>
   );
 }
