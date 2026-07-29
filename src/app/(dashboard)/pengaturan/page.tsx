@@ -49,11 +49,11 @@ function PenggunaTab() {
           <CardDescription className="mt-1">Kelola akun staf yang dapat masuk ke dalam sistem.</CardDescription>
         </div>
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogTrigger asChild>
+          <DialogTrigger render={
             <Button className="bg-primary hover:bg-primary/90 text-white gap-2">
               <Plus className="w-4 h-4" /> Tambah Pengguna
             </Button>
-          </DialogTrigger>
+          } />
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Tambah Pengguna Baru</DialogTitle>
