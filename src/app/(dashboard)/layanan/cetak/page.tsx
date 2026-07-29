@@ -58,8 +58,9 @@ function CetakSuratContent() {
         </Button>
       </div>
 
-      {/* F4 (Folio) Paper Container */}
-      <div className="bg-white shadow-xl print:shadow-none relative overflow-hidden print:overflow-visible w-[215mm] min-h-[330mm] p-[20mm] print:w-full print:min-h-0 print:m-0">
+      <div className="w-full overflow-x-auto flex justify-center print:block pb-10">
+        {/* F4 (Folio) Paper Container */}
+        <div className="bg-white shadow-xl print:shadow-none relative overflow-hidden print:overflow-visible w-[215mm] shrink-0 min-h-[330mm] p-[20mm] print:w-full print:min-h-0 print:m-0">
         
         {/* KOP Surat */}
         <div className="flex items-center justify-between border-b-[3px] border-double border-black pb-4 mb-8">
@@ -120,10 +121,12 @@ function CetakSuratContent() {
             <p className="mb-1">Sukamulya, 27 Juni 2026</p>
             <p className="mb-24">Kepala Desa</p>
             <p className="font-bold underline uppercase">Jajang Somantri</p>
+            Kepala Desa Sukamulya
           </div>
           
         </div>
 
+      </div>
       </div>
     </div>
   );

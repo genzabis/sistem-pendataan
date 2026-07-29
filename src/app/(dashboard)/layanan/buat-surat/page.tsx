@@ -66,7 +66,7 @@ export default function BuatSuratPage() {
             <p className="text-gray-500 mb-8 max-w-md">
               <b>{jenisSurat}</b> atas nama <b>{wargaData?.namaLengkap || "Warga"}</b> telah berhasil dibuat dan disimpan.
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
               <Button onClick={resetForm} variant="outline">
                 Buat Surat Lainnya
               </Button>

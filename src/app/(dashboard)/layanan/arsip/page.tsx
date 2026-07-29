@@ -100,21 +100,23 @@ export default function ArsipSuratPage() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between no-print print:hidden">
+      <div className="flex flex-col md:flex-row justify-between gap-4 no-print print:hidden">
         <div>
           <div className="flex items-center gap-2 mb-2">
             <Link href="/layanan" className="text-sm text-muted-foreground hover:text-primary flex items-center">
               <ArrowLeft className="w-4 h-4 mr-1" /> Kembali ke Layanan
             </Link>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">Arsip Surat Keluar</h2>
-          <p className="text-muted-foreground mt-1">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Arsip Surat Keluar</h2>
+          <p className="text-sm md:text-base text-muted-foreground mt-1">
             Buku register digital untuk riwayat surat keterangan yang telah diterbitkan.
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 self-start md:self-auto">
           <Button variant="outline" onClick={() => window.print()}>
-            <Download className="w-4 h-4 mr-2" /> Export PDF / Cetak Laporan
+            <Download className="w-4 h-4 mr-2" /> 
+            <span className="hidden sm:inline">Export PDF / Cetak Laporan</span>
+            <span className="sm:hidden">Cetak</span>
           </Button>
         </div>
       </div>

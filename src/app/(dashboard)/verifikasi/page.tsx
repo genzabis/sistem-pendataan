@@ -38,13 +38,13 @@ export default function VerifikasiPage() {
   return (
     <>
       <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
-        <div className="flex items-center justify-between space-y-2">
+        <div className="flex flex-col md:flex-row justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-primary flex items-center gap-3">
-            <ShieldCheck className="w-8 h-8 text-primary/80" /> 
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary flex items-center gap-3">
+            <ShieldCheck className="w-6 h-6 md:w-8 md:h-8 text-primary/80" /> 
             Verifikasi Data
           </h2>
-          <p className="text-muted-foreground mt-1">
+          <p className="text-sm md:text-base text-muted-foreground mt-1">
             Modul khusus Super Admin (Kades/Sekdes) untuk memverifikasi perubahan data.
           </p>
         </div>

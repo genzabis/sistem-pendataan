@@ -69,19 +69,19 @@ export default function WargaDetailPage({ params }: { params: Promise<{ id: stri
   return (
     <div className="max-w-5xl mx-auto space-y-6 print:m-0 print:p-0">
       {/* Header */}
-      <div className="flex items-center justify-between bg-white p-4 rounded-2xl border shadow-sm print:hidden">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border shadow-sm print:hidden">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={() => router.back()} className="rounded-full hover:bg-gray-100">
+          <Button variant="ghost" size="icon" onClick={() => router.back()} className="rounded-full hover:bg-gray-100 shrink-0">
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-gray-900">Detail Profil Penduduk</h1>
-            <p className="text-sm text-gray-500">ID Sistem: {warga.id}</p>
+            <h1 className="text-lg sm:text-xl font-bold text-gray-900">Detail Profil Penduduk</h1>
+            <p className="text-xs sm:text-sm text-gray-500">ID Sistem: {warga.id}</p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 self-start sm:self-auto pl-14 sm:pl-0">
           <Button variant="outline" onClick={() => window.print()} className="text-gray-700 border-gray-300 hover:bg-gray-50 rounded-xl shadow-sm">
-            <Printer className="w-4 h-4 mr-2" /> Cetak
+            <Printer className="w-4 h-4 mr-2" /> <span className="hidden sm:inline">Cetak</span>
           </Button>
           <WargaFormDialog 
             initialData={warga} 

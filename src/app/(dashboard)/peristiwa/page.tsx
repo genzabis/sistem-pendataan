@@ -249,7 +249,7 @@ export default function PeristiwaPage() {
       <div className="flex space-x-2 bg-gray-50/50 p-1.5 rounded-xl border border-gray-100 overflow-x-auto">
         <button
           onClick={() => { setActiveTab("KELAHIRAN"); setIsSubmitted(false); }}
-          className={`flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
+          className={`flex items-center justify-center whitespace-nowrap shrink-0 gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
             activeTab === "KELAHIRAN" ? "bg-white text-primary shadow-sm ring-1 ring-gray-200/50" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
           }`}
         >
@@ -258,7 +258,7 @@ export default function PeristiwaPage() {
         </button>
         <button
           onClick={() => { setActiveTab("KEMATIAN"); setIsSubmitted(false); }}
-          className={`flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
+          className={`flex items-center justify-center whitespace-nowrap shrink-0 gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
             activeTab === "KEMATIAN" ? "bg-white text-primary shadow-sm ring-1 ring-gray-200/50" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
           }`}
         >
@@ -267,7 +267,7 @@ export default function PeristiwaPage() {
         </button>
         <button
           onClick={() => { setActiveTab("PINDAH"); setIsSubmitted(false); }}
-          className={`flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
+          className={`flex items-center justify-center whitespace-nowrap shrink-0 gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
             activeTab === "PINDAH" ? "bg-white text-primary shadow-sm ring-1 ring-gray-200/50" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
           }`}
         >
@@ -277,8 +277,8 @@ export default function PeristiwaPage() {
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-        <div className="flex items-center gap-4 mb-8 pb-6 border-b border-gray-50">
-          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8 pb-6 border-b border-gray-50">
+          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
             {activeTab === "KELAHIRAN" && <Baby className="w-6 h-6" />}
             {activeTab === "KEMATIAN" && <Skull className="w-6 h-6" />}
             {activeTab === "PINDAH" && <ArrowRightLeft className="w-6 h-6" />}
