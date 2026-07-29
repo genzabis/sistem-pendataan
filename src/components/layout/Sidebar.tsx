@@ -26,7 +26,7 @@ export function Sidebar() {
       />
       
       <div className={cn(
-        "h-dvh bg-white border-r flex flex-col justify-between shrink-0 transition-all duration-300 print:hidden absolute z-50 md:relative",
+        "h-full overflow-hidden bg-white border-r flex flex-col justify-between shrink-0 transition-all duration-300 print:hidden absolute z-50 md:relative",
         isSidebarOpen ? "w-64 translate-x-0 shadow-2xl md:shadow-none" : "-translate-x-full md:translate-x-0 w-64 md:w-20"
       )}>
       <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
