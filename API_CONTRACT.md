@@ -209,6 +209,51 @@ Dokumen ini ditujukan untuk tim **Backend Developer**. Semua format *request* da
   }
   ```
 
+
+---
+
+## 6. Modul Manajemen Pengguna (User & Role)
+
+### 6.1. Get Daftar Pengguna
+- **Endpoint**: `GET /users`
+- **Response**:
+  ```json
+  {
+    "success": true,
+    "message": "Daftar pengguna berhasil diambil",
+    "data": {
+      "items": [
+        {
+          "id": "USR-001",
+          "username": "admin_sukamulya",
+          "name": "Niamilah Nabil Syahputra",
+          "role": "SUPER_ADMIN",
+          "status": "AKTIF"
+        },
+        {
+          "id": "USR-002",
+          "username": "staf_pelayanan",
+          "name": "Staf Desa",
+          "role": "ADMIN",
+          "status": "AKTIF"
+        }
+      ]
+    }
+  }
+  ```
+
+### 6.2. Tambah/Ubah Pengguna (Role Assignment)
+- **Endpoint**: `POST /users`
+- **Request Body**:
+  ```json
+  {
+    "username": "kades_baru",
+    "password": "password123",
+    "name": "Nama Kades",
+    "role": "SUPER_ADMIN"
+  }
+  ```
+
 ---
 > **Catatan untuk Backend**: 
 > Semua operasi penulisan (*POST/PUT/DELETE*) harus mengecek *authorization token*. Mohon pastikan implementasi validasi (CORS, Rate Limiting) dan sanitasi input juga dilakukan di sisi server.
