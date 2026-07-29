@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { 
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger, DropdownMenuGroup
 } from "@/components/ui/dropdown-menu";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Warga } from "@/types/warga";
 
 import { WargaFormDialog } from "@/components/warga/WargaFormDialog";
@@ -33,6 +34,9 @@ const mockData: Warga[] = [
 
 export default function WargaPage() {
   const [search, setSearch] = useState("");
+  const [filterStatus, setFilterStatus] = useState<string>("Semua");
+  const [filterDusun, setFilterDusun] = useState<string>("Semua");
+  
   const [data, setData] = useState<Warga[]>(mockData);
   const [editWarga, setEditWarga] = useState<Warga | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -43,10 +47,12 @@ export default function WargaPage() {
     }
   };
 
-  const filteredData = data.filter(warga => 
-    warga.namaLengkap.toLowerCase().includes(search.toLowerCase()) || 
-    warga.nik.includes(search)
-  );
+  const filteredData = data.filter(warga => {
+    const matchSearch = warga.namaLengkap.toLowerCase().includes(search.toLowerCase()) || warga.nik.includes(search);
+    const matchStatus = filterStatus === "Semua" || warga.statusWarga === filterStatus;
+    const matchDusun = filterDusun === "Semua" || warga.dusun === filterDusun;
+    return matchSearch && matchStatus && matchDusun;
+  });
 
   const handleExportCSV = () => {
     if (filteredData.length === 0) return;
@@ -100,8 +106,8 @@ export default function WargaPage() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 mt-6 overflow-hidden">
-        <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
-          <div className="relative w-full max-w-sm">
+        <div className="p-4 border-b border-gray-100 flex flex-col md:flex-row gap-4 items-center justify-between bg-gray-50/50">
+          <div className="relative w-full md:max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
               placeholder="Cari NIK atau Nama..."
@@ -109,6 +115,31 @@ export default function WargaPage() {
               onChange={(e) => setSearch(e.target.value)}
               className="pl-9 bg-white border-gray-200"
             />
+          </div>
+          
+          <div className="flex w-full md:w-auto items-center gap-3">
+            <Select value={filterDusun} onValueChange={setFilterDusun}>
+              <SelectTrigger className="w-full md:w-[150px] bg-white">
+                <SelectValue placeholder="Semua Dusun" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Semua">Semua Dusun</SelectItem>
+                <SelectItem value="Cempaka">Cempaka</SelectItem>
+                <SelectItem value="Melati">Melati</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select value={filterStatus} onValueChange={setFilterStatus}>
+              <SelectTrigger className="w-full md:w-[160px] bg-white">
+                <SelectValue placeholder="Status Warga" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Semua">Semua Status</SelectItem>
+                <SelectItem value="AKTIF">Aktif</SelectItem>
+                <SelectItem value="PINDAH_KELUAR">Pindah Keluar</SelectItem>
+                <SelectItem value="MENINGGAL">Meninggal</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
