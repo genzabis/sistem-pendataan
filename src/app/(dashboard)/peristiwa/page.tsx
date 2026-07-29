@@ -1,21 +1,239 @@
 "use client";
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import { Baby, Skull, ArrowRightLeft, FileText, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 type EventType = "KELAHIRAN" | "KEMATIAN" | "PINDAH";
 
+// --- SCHEMAS ---
+const kelahiranSchema = z.object({
+  namaBayi: z.string().min(3, "Nama bayi minimal 3 karakter"),
+  tanggalLahir: z.string().min(1, "Tanggal lahir wajib diisi"),
+  nikAyah: z.string().length(16, "NIK Ayah harus 16 digit"),
+  nikIbu: z.string().length(16, "NIK Ibu harus 16 digit"),
+  tempatDilahirkan: z.string().min(3, "Tempat dilahirkan wajib diisi"),
+  jenisKelamin: z.enum(["L", "P"], { required_error: "Pilih jenis kelamin" }),
+});
+
+const kematianSchema = z.object({
+  nikJenazah: z.string().length(16, "NIK Jenazah harus 16 digit"),
+  tanggalMeninggal: z.string().min(1, "Tanggal meninggal wajib diisi"),
+  penyebabKematian: z.string().min(1, "Penyebab kematian wajib dipilih"),
+  tempatMeninggal: z.string().min(1, "Tempat meninggal wajib diisi"),
+  namaPelapor: z.string().min(3, "Nama pelapor wajib diisi"),
+});
+
+const pindahSchema = z.object({
+  jenisPindah: z.enum(["KELUAR", "MASUK"], { required_error: "Pilih jenis pindah" }),
+  nikKk: z.string().length(16, "NIK/No KK harus 16 digit"),
+  tanggalPindah: z.string().min(1, "Tanggal pindah wajib diisi"),
+  alamatTujuan: z.string().min(5, "Alamat tujuan/asal wajib diisi"),
+  alasanPindah: z.string().min(3, "Alasan pindah wajib diisi"),
+});
+
+// --- SUB-COMPONENTS ---
+function FormKelahiran({ onSuccess }: { onSuccess: () => void }) {
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm<z.infer<typeof kelahiranSchema>>({
+    resolver: zodResolver(kelahiranSchema),
+  });
+
+  const onSubmit = (data: z.infer<typeof kelahiranSchema>) => {
+    console.log("Submit Kelahiran:", data);
+    onSuccess();
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label>Nama Bayi <span className="text-red-500">*</span></Label>
+          <Input placeholder="Nama Lengkap Anak" className="bg-white" {...register("namaBayi")} />
+          {errors.namaBayi && <p className="text-red-500 text-xs">{errors.namaBayi.message}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label>Tanggal Lahir <span className="text-red-500">*</span></Label>
+          <Input type="date" className="bg-white" {...register("tanggalLahir")} />
+          {errors.tanggalLahir && <p className="text-red-500 text-xs">{errors.tanggalLahir.message}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label>NIK Ayah <span className="text-red-500">*</span></Label>
+          <Input placeholder="16 Digit NIK Ayah" className="bg-white" {...register("nikAyah")} />
+          {errors.nikAyah && <p className="text-red-500 text-xs">{errors.nikAyah.message}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label>NIK Ibu <span className="text-red-500">*</span></Label>
+          <Input placeholder="16 Digit NIK Ibu" className="bg-white" {...register("nikIbu")} />
+          {errors.nikIbu && <p className="text-red-500 text-xs">{errors.nikIbu.message}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label>Tempat Dilahirkan <span className="text-red-500">*</span></Label>
+          <Input placeholder="RS / Bidan / Rumah" className="bg-white" {...register("tempatDilahirkan")} />
+          {errors.tempatDilahirkan && <p className="text-red-500 text-xs">{errors.tempatDilahirkan.message}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label>Jenis Kelamin <span className="text-red-500">*</span></Label>
+          <Select onValueChange={(val) => setValue("jenisKelamin", val as "L" | "P")}>
+            <SelectTrigger className="bg-white">
+              <SelectValue placeholder="Pilih Jenis Kelamin..." />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="L">Laki-Laki</SelectItem>
+              <SelectItem value="P">Perempuan</SelectItem>
+            </SelectContent>
+          </Select>
+          {errors.jenisKelamin && <p className="text-red-500 text-xs">{errors.jenisKelamin.message}</p>}
+        </div>
+      </div>
+      <div className="pt-6 border-t border-gray-100 flex justify-end gap-3">
+        <Button variant="outline" type="button" onClick={() => window.location.reload()}>Batalkan</Button>
+        <Button type="submit" className="bg-primary hover:bg-primary/90 text-white min-w-[150px]">
+          <FileText className="w-4 h-4 mr-2" />
+          Catat Kelahiran
+        </Button>
+      </div>
+    </form>
+  );
+}
+
+function FormKematian({ onSuccess }: { onSuccess: () => void }) {
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm<z.infer<typeof kematianSchema>>({
+    resolver: zodResolver(kematianSchema),
+  });
+
+  const onSubmit = (data: z.infer<typeof kematianSchema>) => {
+    console.log("Submit Kematian:", data);
+    onSuccess();
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label>NIK Jenazah <span className="text-red-500">*</span></Label>
+          <Input placeholder="16 Digit NIK Warga" className="bg-white" {...register("nikJenazah")} />
+          {errors.nikJenazah && <p className="text-red-500 text-xs">{errors.nikJenazah.message}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label>Tanggal Meninggal <span className="text-red-500">*</span></Label>
+          <Input type="date" className="bg-white" {...register("tanggalMeninggal")} />
+          {errors.tanggalMeninggal && <p className="text-red-500 text-xs">{errors.tanggalMeninggal.message}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label>Penyebab Kematian <span className="text-red-500">*</span></Label>
+          <Select onValueChange={(val) => setValue("penyebabKematian", val)}>
+            <SelectTrigger className="bg-white">
+              <SelectValue placeholder="Pilih Penyebab..." />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Sakit Biasa">Sakit Biasa / Usia</SelectItem>
+              <SelectItem value="Wabah Penyakit">Wabah Penyakit</SelectItem>
+              <SelectItem value="Kecelakaan">Kecelakaan</SelectItem>
+              <SelectItem value="Lainnya">Lainnya</SelectItem>
+            </SelectContent>
+          </Select>
+          {errors.penyebabKematian && <p className="text-red-500 text-xs">{errors.penyebabKematian.message}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label>Tempat Meninggal <span className="text-red-500">*</span></Label>
+          <Input placeholder="Lokasi (RS / Rumah / dll)" className="bg-white" {...register("tempatMeninggal")} />
+          {errors.tempatMeninggal && <p className="text-red-500 text-xs">{errors.tempatMeninggal.message}</p>}
+        </div>
+        <div className="space-y-2 md:col-span-2">
+          <Label>Nama Pelapor (Ahli Waris) <span className="text-red-500">*</span></Label>
+          <Input placeholder="Nama lengkap pelapor" className="bg-white" {...register("namaPelapor")} />
+          {errors.namaPelapor && <p className="text-red-500 text-xs">{errors.namaPelapor.message}</p>}
+        </div>
+      </div>
+      <div className="pt-6 border-t border-gray-100 flex justify-end gap-3">
+        <Button variant="outline" type="button" onClick={() => window.location.reload()}>Batalkan</Button>
+        <Button type="submit" className="bg-primary hover:bg-primary/90 text-white min-w-[150px]">
+          <FileText className="w-4 h-4 mr-2" />
+          Catat Kematian
+        </Button>
+      </div>
+    </form>
+  );
+}
+
+function FormPindah({ onSuccess }: { onSuccess: () => void }) {
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm<z.infer<typeof pindahSchema>>({
+    resolver: zodResolver(pindahSchema),
+    defaultValues: {
+      jenisPindah: "KELUAR"
+    }
+  });
+
+  const onSubmit = (data: z.infer<typeof pindahSchema>) => {
+    console.log("Submit Pindah:", data);
+    onSuccess();
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-3 md:col-span-2">
+          <Label>Jenis Perpindahan <span className="text-red-500">*</span></Label>
+          <RadioGroup defaultValue="KELUAR" onValueChange={(val) => setValue("jenisPindah", val as "KELUAR" | "MASUK")} className="flex gap-4 mt-2">
+            <div className="flex items-center space-x-2 border p-4 rounded-xl flex-1 hover:bg-gray-50 transition-colors">
+              <RadioGroupItem value="KELUAR" id="keluar" className="text-primary border-primary" />
+              <Label htmlFor="keluar" className="font-medium cursor-pointer w-full">Pindah Keluar Desa</Label>
+            </div>
+            <div className="flex items-center space-x-2 border p-4 rounded-xl flex-1 hover:bg-gray-50 transition-colors">
+              <RadioGroupItem value="MASUK" id="masuk" className="text-primary border-primary" />
+              <Label htmlFor="masuk" className="font-medium cursor-pointer w-full">Pindah Datang / Masuk</Label>
+            </div>
+          </RadioGroup>
+          {errors.jenisPindah && <p className="text-red-500 text-xs">{errors.jenisPindah.message}</p>}
+        </div>
+        
+        <div className="space-y-2">
+          <Label>NIK / No. KK Kepala Keluarga <span className="text-red-500">*</span></Label>
+          <Input placeholder="16 Digit NIK/KK" className="bg-white" {...register("nikKk")} />
+          {errors.nikKk && <p className="text-red-500 text-xs">{errors.nikKk.message}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label>Tanggal Kepindahan <span className="text-red-500">*</span></Label>
+          <Input type="date" className="bg-white" {...register("tanggalPindah")} />
+          {errors.tanggalPindah && <p className="text-red-500 text-xs">{errors.tanggalPindah.message}</p>}
+        </div>
+        <div className="space-y-2 md:col-span-2">
+          <Label>Alamat Tujuan / Asal <span className="text-red-500">*</span></Label>
+          <Input placeholder="Jalan, RT/RW, Desa, Kecamatan, Kab/Kota" className="bg-white" {...register("alamatTujuan")} />
+          {errors.alamatTujuan && <p className="text-red-500 text-xs">{errors.alamatTujuan.message}</p>}
+        </div>
+        <div className="space-y-2 md:col-span-2">
+          <Label>Alasan Pindah <span className="text-red-500">*</span></Label>
+          <Input placeholder="Contoh: Pekerjaan / Pendidikan / Menikah" className="bg-white" {...register("alasanPindah")} />
+          {errors.alasanPindah && <p className="text-red-500 text-xs">{errors.alasanPindah.message}</p>}
+        </div>
+      </div>
+      <div className="pt-6 border-t border-gray-100 flex justify-end gap-3">
+        <Button variant="outline" type="button" onClick={() => window.location.reload()}>Batalkan</Button>
+        <Button type="submit" className="bg-primary hover:bg-primary/90 text-white min-w-[150px]">
+          <FileText className="w-4 h-4 mr-2" />
+          Catat Perpindahan
+        </Button>
+      </div>
+    </form>
+  );
+}
+
+// --- MAIN COMPONENT ---
 export default function PeristiwaPage() {
   const [activeTab, setActiveTab] = useState<EventType>("KELAHIRAN");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSuccess = () => {
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setTimeout(() => setIsSubmitted(false), 4000);
   };
 
   return (
@@ -30,7 +248,7 @@ export default function PeristiwaPage() {
       {/* Tabs */}
       <div className="flex space-x-2 bg-gray-50/50 p-1.5 rounded-xl border border-gray-100 overflow-x-auto">
         <button
-          onClick={() => setActiveTab("KELAHIRAN")}
+          onClick={() => { setActiveTab("KELAHIRAN"); setIsSubmitted(false); }}
           className={`flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
             activeTab === "KELAHIRAN" ? "bg-white text-primary shadow-sm ring-1 ring-gray-200/50" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
           }`}
@@ -39,7 +257,7 @@ export default function PeristiwaPage() {
           Kelahiran
         </button>
         <button
-          onClick={() => setActiveTab("KEMATIAN")}
+          onClick={() => { setActiveTab("KEMATIAN"); setIsSubmitted(false); }}
           className={`flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
             activeTab === "KEMATIAN" ? "bg-white text-primary shadow-sm ring-1 ring-gray-200/50" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
           }`}
@@ -48,7 +266,7 @@ export default function PeristiwaPage() {
           Kematian
         </button>
         <button
-          onClick={() => setActiveTab("PINDAH")}
+          onClick={() => { setActiveTab("PINDAH"); setIsSubmitted(false); }}
           className={`flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
             activeTab === "PINDAH" ? "bg-white text-primary shadow-sm ring-1 ring-gray-200/50" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
           }`}
@@ -78,126 +296,17 @@ export default function PeristiwaPage() {
         </div>
 
         {isSubmitted && (
-          <div className="mb-8 p-4 bg-green-50 text-green-700 rounded-xl border border-green-100 flex items-center gap-3">
+          <div className="mb-8 p-4 bg-green-50 text-green-700 rounded-xl border border-green-100 flex items-center gap-3 animate-in fade-in slide-in-from-top-4">
             <CheckCircle2 className="w-5 h-5 text-green-600" />
             <p className="font-medium text-sm">Data peristiwa berhasil dicatat dan menunggu verifikasi Admin!</p>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {activeTab === "KELAHIRAN" && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label>Nama Bayi</Label>
-                  <Input placeholder="Nama Lengkap Anak" required />
-                </div>
-                <div className="space-y-2">
-                  <Label>Tanggal Lahir</Label>
-                  <Input type="date" required />
-                </div>
-                <div className="space-y-2">
-                  <Label>NIK Ayah</Label>
-                  <Input placeholder="16 Digit NIK Ayah" required />
-                </div>
-                <div className="space-y-2">
-                  <Label>NIK Ibu</Label>
-                  <Input placeholder="16 Digit NIK Ibu" required />
-                </div>
-                <div className="space-y-2">
-                  <Label>Tempat Dilahirkan</Label>
-                  <Input placeholder="RS / Bidan / Rumah" required />
-                </div>
-                <div className="space-y-2">
-                  <Label>Jenis Kelamin</Label>
-                  <select className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-                    <option value="">Pilih Jenis Kelamin...</option>
-                    <option value="L">Laki-Laki</option>
-                    <option value="P">Perempuan</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          )}
+        {/* Dynamic Forms */}
+        {activeTab === "KELAHIRAN" && <FormKelahiran onSuccess={handleSuccess} />}
+        {activeTab === "KEMATIAN" && <FormKematian onSuccess={handleSuccess} />}
+        {activeTab === "PINDAH" && <FormPindah onSuccess={handleSuccess} />}
 
-          {activeTab === "KEMATIAN" && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label>NIK Jenazah</Label>
-                  <Input placeholder="16 Digit NIK Warga" required />
-                </div>
-                <div className="space-y-2">
-                  <Label>Tanggal Meninggal</Label>
-                  <Input type="date" required />
-                </div>
-                <div className="space-y-2">
-                  <Label>Penyebab Kematian</Label>
-                  <select className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-                    <option value="">Pilih Penyebab...</option>
-                    <option value="Sakit Biasa">Sakit Biasa / Usia</option>
-                    <option value="Wabah Penyakit">Wabah Penyakit</option>
-                    <option value="Kecelakaan">Kecelakaan</option>
-                    <option value="Lainnya">Lainnya</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <Label>Tempat Meninggal</Label>
-                  <Input placeholder="Lokasi (RS / Rumah / dll)" required />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <Label>Nama Pelapor (Ahli Waris)</Label>
-                  <Input placeholder="Nama lengkap pelapor" required />
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === "PINDAH" && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2 md:col-span-2">
-                  <Label>Jenis Perpindahan</Label>
-                  <div className="flex gap-4 mt-2">
-                    <label className="flex items-center gap-2 border p-4 rounded-xl flex-1 cursor-pointer hover:bg-gray-50">
-                      <input type="radio" name="jenisPindah" className="w-4 h-4 text-primary" defaultChecked />
-                      <span className="font-medium">Pindah Keluar Desa</span>
-                    </label>
-                    <label className="flex items-center gap-2 border p-4 rounded-xl flex-1 cursor-pointer hover:bg-gray-50">
-                      <input type="radio" name="jenisPindah" className="w-4 h-4 text-primary" />
-                      <span className="font-medium">Pindah Datang / Masuk</span>
-                    </label>
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label>NIK / No. KK Kepala Keluarga</Label>
-                  <Input placeholder="16 Digit NIK/KK" required />
-                </div>
-                <div className="space-y-2">
-                  <Label>Tanggal Kepindahan</Label>
-                  <Input type="date" required />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <Label>Alamat Tujuan / Asal</Label>
-                  <Input placeholder="Jalan, RT/RW, Desa, Kecamatan, Kab/Kota" required />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <Label>Alasan Pindah</Label>
-                  <Input placeholder="Contoh: Pekerjaan / Pendidikan / Menikah" required />
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div className="pt-6 border-t border-gray-100 flex justify-end gap-3">
-            <Button variant="outline" type="button">Batalkan</Button>
-            <Button type="submit" className="bg-primary hover:bg-primary/90 text-white min-w-[150px]">
-              <FileText className="w-4 h-4 mr-2" />
-              Catat Peristiwa
-            </Button>
-          </div>
-        </form>
       </div>
     </div>
   );
