@@ -28,37 +28,43 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Card Total Penduduk */}
-        <Card className="border-none shadow-sm bg-white hover:shadow-md transition-shadow">
+        <Card className="border border-gray-200 shadow-sm bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-semibold text-gray-700">Total Penduduk</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">Total Penduduk</CardTitle>
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
               <Users className="w-4 h-4" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-primary mb-1">2,160</div>
-            <p className="text-xs font-medium text-emerald-600 bg-emerald-50 w-fit px-2 py-0.5 rounded-full">+12 bulan ini</p>
+            <div className="text-3xl font-bold text-gray-900 mb-1">2,160</div>
+            <p className="text-xs font-medium text-emerald-600 flex items-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+              +12 bulan ini
+            </p>
           </CardContent>
         </Card>
 
         {/* Card Total KK */}
-        <Card className="border-none shadow-sm bg-white hover:shadow-md transition-shadow">
+        <Card className="border border-gray-200 shadow-sm bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-semibold text-gray-700">Total Kartu Keluarga</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">Total Kartu Keluarga</CardTitle>
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
               <FileText className="w-4 h-4" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-primary mb-1">645</div>
-            <p className="text-xs font-medium text-emerald-600 bg-emerald-50 w-fit px-2 py-0.5 rounded-full">+3 bulan ini</p>
+            <div className="text-3xl font-bold text-gray-900 mb-1">645</div>
+            <p className="text-xs font-medium text-emerald-600 flex items-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+              +3 bulan ini
+            </p>
           </CardContent>
         </Card>
 
         {/* Card Rasio Jenis Kelamin */}
-        <Card className="border-none shadow-sm bg-white hover:shadow-md transition-shadow">
+        <Card className="border border-gray-200 shadow-sm bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-semibold text-gray-700">Rasio Jenis Kelamin</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">Rasio Jenis Kelamin</CardTitle>
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
               <Activity className="w-4 h-4" />
             </div>
@@ -66,29 +72,31 @@ export default function DashboardPage() {
           <CardContent>
             <div className="flex items-center gap-6 mt-1">
               <div>
-                <div className="text-2xl font-bold text-primary">1,050</div>
-                <div className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Laki-Laki</div>
+                <div className="text-2xl font-bold text-gray-900 tracking-tight">1,050</div>
+                <div className="text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5">Laki-Laki</div>
               </div>
               <div className="w-px h-8 bg-gray-200"></div>
               <div>
-                <div className="text-2xl font-bold text-primary">1,110</div>
-                <div className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Perempuan</div>
+                <div className="text-2xl font-bold text-gray-900 tracking-tight">1,110</div>
+                <div className="text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5">Perempuan</div>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Card Penduduk Usia Produktif */}
-        <Card className="border-none shadow-sm bg-white hover:shadow-md transition-shadow">
+        <Card className="border border-gray-200 shadow-sm bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-semibold text-gray-700">Penduduk Usia Produktif</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600">Penduduk Usia Produktif</CardTitle>
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
               <Briefcase className="w-4 h-4" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-primary mb-1">1,420</div>
-            <p className="text-xs font-medium text-gray-500">65,7% dari total</p>
+            <div className="text-3xl font-bold text-gray-900 mb-1">1,420</div>
+            <p className="text-xs font-medium text-gray-500">
+              65,7% dari total penduduk
+            </p>
           </CardContent>
         </Card>
       </div>

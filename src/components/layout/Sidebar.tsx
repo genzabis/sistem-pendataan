@@ -24,7 +24,7 @@ export function Sidebar() {
           <img 
             src="/logo.png" 
             alt="Logo Desa" 
-            className={cn("h-auto object-contain mb-3 drop-shadow-sm transition-all duration-300", isSidebarOpen ? "w-12" : "w-8")}
+            className={cn("h-auto object-contain mb-3 logo-stroke-white transition-all duration-300", isSidebarOpen ? "w-12" : "w-8")}
           />
           {isSidebarOpen && (
             <div className="animate-in fade-in zoom-in duration-300">

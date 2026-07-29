@@ -60,3 +60,31 @@
     @apply font-sans;
   }
 }
+
+@layer utilities {
+  .logo-stroke-white {
+    filter: url(#white-stroke);
+  }
+}
+
+@page {
+  size: 215mm 330mm;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    background: white;
+  }
+  
+  /* Hide UI elements that shouldn't be printed */
+  .no-print, .no-print * {
+    display: none !important;
+  }
+  
+  /* Ensure background colors print exactly as they appear */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

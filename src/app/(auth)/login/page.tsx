@@ -58,7 +58,7 @@ export default function LoginPage() {
           {/* Left side - Branding */}
           <div className="hidden lg:flex w-1/2 justify-center px-8 lg:px-12 text-center text-white">
             <div className="flex flex-col items-center w-full max-w-md mt-12">
-              <img src="/logo.png" alt="Logo" className="w-24 h-auto object-contain mb-6 drop-shadow-lg" />
+              <img src="/logo.png" alt="Logo" className="w-24 h-auto object-contain mb-6 logo-stroke-white" />
               <h1 className="text-4xl font-bold mb-1">Desa Sukamulya</h1>
               <h2 className="text-xl font-medium text-primary-foreground/90 mb-4">Kec. Langkaplancar, Kab. Pangandaran</h2>
               <p className="text-primary-foreground/80 text-base mb-8 leading-relaxed">

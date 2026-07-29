@@ -1,7 +1,17 @@
 "use client";
 
-import { Map, MapPin, Home, Users, Building } from "lucide-react";
+import { MapPin, Home, Users, Building } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import dynamic from "next/dynamic";
+
+const MapComponent = dynamic(() => import("@/components/wilayah/MapComponent"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center bg-gray-50">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>
+  ),
+});
 
 export default function WilayahPage() {
   const dataDusun = [
@@ -22,29 +32,8 @@ export default function WilayahPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         {/* Peta Interaktif (Mockup) */}
         <Card className="lg:col-span-2 border-none shadow-sm h-[500px] overflow-hidden relative group">
-          <div className="absolute inset-0 bg-blue-50/50"></div>
-          {/* Grid pattern background */}
-          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
-          
-          <div className="relative w-full h-full flex items-center justify-center">
-            <div className="relative w-[80%] h-[80%] border-4 border-indigo-200/50 rounded-3xl bg-indigo-50/30 backdrop-blur-sm flex items-center justify-center shadow-inner">
-              <div className="text-center p-8 bg-white/80 rounded-2xl shadow-lg border border-white/50 backdrop-blur-md">
-                <Map className="w-16 h-16 text-indigo-400 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-800">Integrasi Peta Desa (GIS)</h3>
-                <p className="text-gray-500 mt-2 text-sm max-w-xs mx-auto">Fitur pemetaan lahan dan batas wilayah RT/RW menggunakan API Google Maps / Leaflet (Tahap 2).</p>
-              </div>
-
-              {/* Dummy Map Pins */}
-              <div className="absolute top-[20%] left-[30%] animate-bounce delay-100">
-                <MapPin className="w-8 h-8 text-red-500 drop-shadow-md" />
-              </div>
-              <div className="absolute top-[60%] left-[70%] animate-bounce delay-300">
-                <MapPin className="w-8 h-8 text-blue-500 drop-shadow-md" />
-              </div>
-              <div className="absolute top-[40%] left-[60%] animate-bounce delay-500">
-                <MapPin className="w-8 h-8 text-emerald-500 drop-shadow-md" />
-              </div>
-            </div>
+          <div className="relative w-full h-full z-0">
+            <MapComponent />
           </div>
         </Card>
 
