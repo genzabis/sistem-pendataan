@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Users, FileText, BarChart2, Settings, LogOut, HelpCircle, ShieldCheck, Plus, Map, Briefcase } from "lucide-react";
+import { LayoutDashboard, Users, FileText, BarChart2, Settings, LogOut, HelpCircle, ShieldCheck, Plus, Map, Briefcase, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUiStore } from "@/store/uiStore";
 import { signOut, useSession } from "next-auth/react";
@@ -26,10 +26,16 @@ export function Sidebar() {
       />
       
       <div className={cn(
-        "h-full overflow-hidden bg-white border-r flex flex-col justify-between shrink-0 transition-all duration-300 print:hidden absolute z-50 md:relative",
+        "h-dvh overflow-hidden bg-white border-r flex flex-col justify-between shrink-0 transition-all duration-300 print:hidden fixed inset-y-0 left-0 z-50 md:relative md:h-full",
         isSidebarOpen ? "w-64 translate-x-0 shadow-2xl md:shadow-none" : "-translate-x-full md:translate-x-0 w-64 md:w-20"
       )}>
-      <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+      <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden relative">
+        <button 
+          onClick={() => useUiStore.getState().toggleSidebar()}
+          className="md:hidden absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-700 bg-gray-50 rounded-full z-10"
+        >
+          <X className="w-5 h-5" />
+        </button>
         <div className="p-6 shrink-0 flex flex-col items-center text-center">
           <img 
             src="/logo.png" 
