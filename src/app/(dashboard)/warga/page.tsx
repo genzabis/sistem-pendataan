@@ -118,7 +118,7 @@ export default function WargaPage() {
           </div>
           
           <div className="flex w-full md:w-auto items-center gap-3">
-            <Select value={filterDusun} onValueChange={setFilterDusun}>
+            <Select value={filterDusun} onValueChange={(v) => v && setFilterDusun(v)}>
               <SelectTrigger className="w-full md:w-[150px] bg-white">
                 <SelectValue placeholder="Semua Dusun" />
               </SelectTrigger>
@@ -129,7 +129,7 @@ export default function WargaPage() {
               </SelectContent>
             </Select>
 
-            <Select value={filterStatus} onValueChange={setFilterStatus}>
+            <Select value={filterStatus} onValueChange={(v) => v && setFilterStatus(v)}>
               <SelectTrigger className="w-full md:w-[160px] bg-white">
                 <SelectValue placeholder="Status Warga" />
               </SelectTrigger>
