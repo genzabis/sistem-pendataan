@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus } from "lucide-react";
 import { Warga } from "@/types/warga";
+import { useWargaStore } from "@/store/useWargaStore";
 
 // Schema validasi dengan Zod
 const formSchema = z.object({
@@ -77,11 +78,18 @@ export function WargaFormDialog({
     }
   }, [initialData, open, reset]);
 
+  const { addWarga, updateWarga } = useWargaStore();
+
   const onSubmit = (data: FormValues) => {
-    console.log("Data Warga:", data);
-    // TODO: Integrasi ke API endpoint
-    alert("Data berhasil disimpan! (Mock)");
+    if (initialData) {
+      updateWarga(initialData.id, data);
+      alert("Data berhasil diperbarui!");
+    } else {
+      addWarga(data);
+      alert("Data berhasil ditambahkan!");
+    }
     setOpen(false);
+    if (!initialData) reset();
   };
 
   return (
