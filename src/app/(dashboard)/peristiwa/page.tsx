@@ -20,7 +20,7 @@ const kelahiranSchema = z.object({
   nikAyah: z.string().length(16, "NIK Ayah harus 16 digit"),
   nikIbu: z.string().length(16, "NIK Ibu harus 16 digit"),
   tempatDilahirkan: z.string().min(3, "Tempat dilahirkan wajib diisi"),
-  jenisKelamin: z.enum(["L", "P"], { required_error: "Pilih jenis kelamin" }),
+  jenisKelamin: z.enum(["L", "P"], { invalid_type_error: "Pilih jenis kelamin" }),
 });
 
 const kematianSchema = z.object({
@@ -32,7 +32,7 @@ const kematianSchema = z.object({
 });
 
 const pindahSchema = z.object({
-  jenisPindah: z.enum(["KELUAR", "MASUK"], { required_error: "Pilih jenis pindah" }),
+  jenisPindah: z.enum(["KELUAR", "MASUK"], { invalid_type_error: "Pilih jenis pindah" }),
   nikKk: z.string().length(16, "NIK/No KK harus 16 digit"),
   tanggalPindah: z.string().min(1, "Tanggal pindah wajib diisi"),
   alamatTujuan: z.string().min(5, "Alamat tujuan/asal wajib diisi"),
@@ -80,7 +80,7 @@ function FormKelahiran({ onSuccess }: { onSuccess: () => void }) {
         </div>
         <div className="space-y-2">
           <Label>Jenis Kelamin <span className="text-red-500">*</span></Label>
-          <Select onValueChange={(val) => setValue("jenisKelamin", val as "L" | "P")}>
+          <Select onValueChange={(val: string | null) => val && setValue("jenisKelamin", val as "L" | "P")}>
             <SelectTrigger className="bg-white">
               <SelectValue placeholder="Pilih Jenis Kelamin..." />
             </SelectTrigger>
@@ -128,7 +128,7 @@ function FormKematian({ onSuccess }: { onSuccess: () => void }) {
         </div>
         <div className="space-y-2">
           <Label>Penyebab Kematian <span className="text-red-500">*</span></Label>
-          <Select onValueChange={(val) => setValue("penyebabKematian", val)}>
+          <Select onValueChange={(val: string | null) => val && setValue("penyebabKematian", val)}>
             <SelectTrigger className="bg-white">
               <SelectValue placeholder="Pilih Penyebab..." />
             </SelectTrigger>
@@ -181,7 +181,7 @@ function FormPindah({ onSuccess }: { onSuccess: () => void }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-3 md:col-span-2">
           <Label>Jenis Perpindahan <span className="text-red-500">*</span></Label>
-          <RadioGroup defaultValue="KELUAR" onValueChange={(val) => setValue("jenisPindah", val as "KELUAR" | "MASUK")} className="flex gap-4 mt-2">
+          <RadioGroup defaultValue="KELUAR" onValueChange={(val: string) => setValue("jenisPindah", val as "KELUAR" | "MASUK")} className="flex gap-4 mt-2">
             <div className="flex items-center space-x-2 border p-4 rounded-xl flex-1 hover:bg-gray-50 transition-colors">
               <RadioGroupItem value="KELUAR" id="keluar" className="text-primary border-primary" />
               <Label htmlFor="keluar" className="font-medium cursor-pointer w-full">Pindah Keluar Desa</Label>
