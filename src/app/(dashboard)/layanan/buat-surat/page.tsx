@@ -139,18 +139,18 @@ export default function BuatSuratPage() {
                   <h3 className="font-medium text-lg">Identitas Pemohon</h3>
                 </div>
                 
-                <div className="flex gap-3 items-end">
+                <div className="flex flex-col sm:flex-row gap-3 sm:items-end">
                   <div className="flex-1 space-y-2">
                     <Label htmlFor="nik">NIK KTP Pemohon</Label>
                     <Input id="nik" placeholder="Masukkan 16 digit NIK..." {...register("nik", { required: true })} />
                   </div>
-                  <Button type="button" variant="secondary" onClick={handleSearchNIK} disabled={isSearching} className="w-[120px]">
+                  <Button type="button" variant="secondary" onClick={handleSearchNIK} disabled={isSearching} className="w-full sm:w-[120px]">
                     {isSearching ? "Mencari..." : <><Search className="w-4 h-4 mr-2" /> Cari NIK</>}
                   </Button>
                 </div>
 
                 {wargaData && (
-                  <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 text-sm grid grid-cols-2 gap-4">
+                  <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 text-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-500 mb-1">Nama Lengkap</p>
                       <p className="font-semibold">{wargaData.namaLengkap}</p>

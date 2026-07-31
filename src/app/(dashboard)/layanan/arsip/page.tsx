@@ -123,13 +123,13 @@ export default function ArsipSuratPage() {
 
       <Card className="border shadow-sm print:border-none print:shadow-none">
         <CardHeader className="pb-4 bg-gray-50/50 border-b print:hidden">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <CardTitle className="text-lg font-semibold flex items-center">
               <FileText className="w-5 h-5 mr-2 text-primary" /> Daftar Riwayat Surat
             </CardTitle>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
               <Select value={filterJenis} onValueChange={(v) => v && setFilterJenis(v)}>
-                <SelectTrigger className="w-[200px] bg-white">
+                <SelectTrigger className="w-full sm:w-[200px] bg-white">
                   <SelectValue placeholder="Filter Jenis Surat" />
                 </SelectTrigger>
                 <SelectContent>
@@ -141,11 +141,11 @@ export default function ArsipSuratPage() {
                 </SelectContent>
               </Select>
 
-              <div className="relative w-64">
+              <div className="relative w-full sm:w-64">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
                 <Input
                   placeholder="Cari nama atau no surat..."
-                  className="pl-9 bg-white"
+                  className="pl-9 bg-white w-full"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -153,8 +153,8 @@ export default function ArsipSuratPage() {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="p-0 print:p-0">
-          <Table className="print:border-collapse print:border print:border-black">
+        <CardContent className="p-0 print:p-0 overflow-x-auto">
+          <Table className="print:border-collapse print:border print:border-black min-w-[800px] print:min-w-0">
             <TableHeader className="bg-gray-50 print:bg-transparent print:border-black">
               <TableRow className="print:border-black">
                 <TableHead className="w-[50px] font-semibold print:border print:border-black print:text-black text-center">No.</TableHead>
