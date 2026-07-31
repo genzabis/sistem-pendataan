@@ -56,10 +56,10 @@ export default function RegisterPage() {
           </div>
 
           {/* Right side - Register Form */}
-          <div className="flex w-full lg:w-1/2 justify-center px-6 sm:px-10 lg:px-12">
-            <div className="w-full max-w-md space-y-4">
+          <div className="flex w-full lg:w-1/2 justify-center px-6 sm:px-10 lg:px-12 mt-6 lg:mt-12">
+            <div className="w-full max-w-md space-y-4 lg:space-y-5">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Daftar Akun</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Daftar Akun</h2>
                 <p className="text-gray-500 text-sm leading-relaxed">
                   Daftarkan diri Anda untuk mengakses layanan Portal Sukamulya.
                 </p>
@@ -73,19 +73,19 @@ export default function RegisterPage() {
                     <Input
                       id="nik"
                       placeholder="Masukkan 16 digit NIK"
-                      className="pl-10 h-10 rounded-xl border-gray-200"
+                      className="pl-10 h-10 rounded-xl border-gray-200 text-sm md:text-base"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-gray-700 font-medium">Nama Lengkap</Label>
+                  <Label htmlFor="name" className="text-gray-700 font-medium text-sm md:text-base">Nama Lengkap</Label>
                   <div className="relative">
                     <UserIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                     <Input
                       id="name"
                       placeholder="Sesuai KTP"
-                      className="pl-10 h-10 rounded-xl border-gray-200"
+                      className="pl-10 h-10 rounded-xl border-gray-200 text-sm md:text-base"
                     />
                   </div>
                 </div>
@@ -98,20 +98,20 @@ export default function RegisterPage() {
                       id="email"
                       type="email"
                       placeholder="email@contoh.com"
-                      className="pl-10 h-10 rounded-xl border-gray-200"
+                      className="pl-10 h-10 rounded-xl border-gray-200 text-sm md:text-base"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="password" className="text-gray-700 font-medium">Password</Label>
+                  <Label htmlFor="password" className="text-gray-700 font-medium text-sm md:text-base">Password</Label>
                   <div className="relative">
                     <LockIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Buat password"
-                      className="pl-10 pr-10 h-10 rounded-xl border-gray-200"
+                      className="pl-10 pr-10 h-10 rounded-xl border-gray-200 text-sm md:text-base"
                     />
                     <button
                       type="button"
@@ -131,7 +131,7 @@ export default function RegisterPage() {
                       id="confirm-password"
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="Ulangi password"
-                      className="pl-10 pr-10 h-10 rounded-xl border-gray-200"
+                      className="pl-10 pr-10 h-10 rounded-xl border-gray-200 text-sm md:text-base"
                     />
                     <button
                       type="button"
@@ -143,7 +143,7 @@ export default function RegisterPage() {
                   </div>
                 </div>
 
-                <Button type="button" className="w-full h-10 text-base font-semibold rounded-xl mt-2">
+                <Button type="button" className="w-full h-10 md:h-11 text-sm md:text-base font-semibold rounded-xl mt-2">
                   Daftar Sekarang
                 </Button>
               </form>

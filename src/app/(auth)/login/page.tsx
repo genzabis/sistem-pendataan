@@ -85,10 +85,10 @@ export default function LoginPage() {
           </div>
 
           {/* Right side - Login Form */}
-          <div className="flex w-full lg:w-1/2 justify-center px-6 sm:px-10 lg:px-12 mt-12">
-            <div className="w-full max-w-md space-y-6">
+          <div className="flex w-full lg:w-1/2 justify-center px-6 sm:px-10 lg:px-12 mt-8 lg:mt-12">
+            <div className="w-full max-w-md space-y-5 lg:space-y-6">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Selamat Datang</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Selamat Datang</h2>
                 <p className="text-gray-500 text-sm leading-relaxed">
                   Silakan masuk ke akun Sukamulya Portal Anda untuk melanjutkan.
                 </p>
@@ -111,7 +111,7 @@ export default function LoginPage() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="admin@desa.com"
                       required
-                      className="pl-10 h-11 rounded-xl border-gray-200"
+                      className="pl-10 h-10 md:h-11 rounded-xl border-gray-200 text-sm md:text-base"
                     />
                   </div>
                 </div>
@@ -132,7 +132,7 @@ export default function LoginPage() {
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
                       required
-                      className="pl-10 pr-10 h-11 rounded-xl border-gray-200"
+                      className="pl-10 pr-10 h-10 md:h-11 rounded-xl border-gray-200 text-sm md:text-base"
                     />
                     <button
                       type="button"
@@ -158,20 +158,20 @@ export default function LoginPage() {
                   </label>
                 </div>
 
-                <Button type="submit" disabled={loading} className="w-full h-11 text-base font-semibold rounded-xl">
+                <Button type="submit" disabled={loading} className="w-full h-10 md:h-11 text-sm md:text-base font-semibold rounded-xl">
                   {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Masuk ke Portal"}
                 </Button>
                 
-                <div className="relative my-6">
+                <div className="relative my-5 lg:my-6">
                   <div className="absolute inset-0 flex items-center">
                     <span className="w-full border-t border-gray-200" />
                   </div>
-                  <div className="relative flex justify-center text-xs uppercase">
+                  <div className="relative flex justify-center text-[10px] md:text-xs uppercase">
                     <span className="bg-white px-4 text-gray-400 font-medium">Atau</span>
                   </div>
                 </div>
 
-                <Button variant="outline" type="button" className="w-full h-11 text-base font-medium rounded-xl border-gray-200 text-gray-700 gap-2">
+                <Button variant="outline" type="button" className="w-full h-10 md:h-11 text-sm md:text-base font-medium rounded-xl border-gray-200 text-gray-700 gap-2">
                   <Fingerprint className="w-5 h-5 text-primary" />
                   Masuk dengan Biometrik
                 </Button>
