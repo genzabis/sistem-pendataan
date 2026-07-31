@@ -140,6 +140,7 @@ export default function WargaPage() {
           <Table>
             <TableHeader className="bg-gray-50/80">
               <TableRow>
+                <TableHead className="w-12 font-semibold text-gray-600 text-center">No.</TableHead>
                 <TableHead className="font-semibold text-gray-600">NIK</TableHead>
                 <TableHead className="font-semibold text-gray-600">Nama Lengkap</TableHead>
                 <TableHead className="font-semibold text-gray-600">L/P</TableHead>
@@ -151,8 +152,9 @@ export default function WargaPage() {
             </TableHeader>
             <TableBody>
               {filteredData.length > 0 ? (
-                filteredData.map((warga) => (
+                filteredData.map((warga, index) => (
                   <TableRow key={warga.id} className="hover:bg-gray-50/50 transition-colors">
+                    <TableCell className="text-center font-medium text-gray-500">{index + 1}</TableCell>
                     <TableCell className="font-medium text-gray-900">{warga.nik}</TableCell>
                     <TableCell>{warga.namaLengkap}</TableCell>
                     <TableCell>{warga.jenisKelamin}</TableCell>
@@ -197,7 +199,7 @@ export default function WargaPage() {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={7} className="h-24 text-center text-gray-500">
+                  <TableCell colSpan={8} className="h-24 text-center text-gray-500">
                     Tidak ada data warga ditemukan.
                   </TableCell>
                 </TableRow>

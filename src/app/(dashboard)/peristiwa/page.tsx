@@ -246,10 +246,10 @@ export default function PeristiwaPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex space-x-2 bg-gray-50/50 p-1.5 rounded-xl border border-gray-100 overflow-x-auto">
+      <div className="flex space-x-1 sm:space-x-2 bg-gray-50 p-1 md:p-1.5 rounded-xl border border-gray-100 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory">
         <button
           onClick={() => { setActiveTab("KELAHIRAN"); setIsSubmitted(false); }}
-          className={`flex items-center justify-center whitespace-nowrap shrink-0 gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
+          className={`flex items-center justify-center whitespace-nowrap shrink-0 gap-1.5 md:gap-2 px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-sm font-medium transition-all snap-start ${
             activeTab === "KELAHIRAN" ? "bg-white text-primary shadow-sm ring-1 ring-gray-200/50" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
           }`}
         >
@@ -258,7 +258,7 @@ export default function PeristiwaPage() {
         </button>
         <button
           onClick={() => { setActiveTab("KEMATIAN"); setIsSubmitted(false); }}
-          className={`flex items-center justify-center whitespace-nowrap shrink-0 gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
+          className={`flex items-center justify-center whitespace-nowrap shrink-0 gap-1.5 md:gap-2 px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-sm font-medium transition-all snap-start ${
             activeTab === "KEMATIAN" ? "bg-white text-primary shadow-sm ring-1 ring-gray-200/50" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
           }`}
         >
@@ -267,7 +267,7 @@ export default function PeristiwaPage() {
         </button>
         <button
           onClick={() => { setActiveTab("PINDAH"); setIsSubmitted(false); }}
-          className={`flex items-center justify-center whitespace-nowrap shrink-0 gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all ${
+          className={`flex items-center justify-center whitespace-nowrap shrink-0 gap-1.5 md:gap-2 px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-sm font-medium transition-all snap-start ${
             activeTab === "PINDAH" ? "bg-white text-primary shadow-sm ring-1 ring-gray-200/50" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
           }`}
         >
