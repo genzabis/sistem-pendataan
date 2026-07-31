@@ -70,15 +70,15 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-2 md:gap-6 mt-1">
-              <div>
-                <div className="text-lg md:text-2xl font-bold text-gray-900 tracking-tight">1,050</div>
-                <div className="text-[9px] md:text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5">Laki-Laki</div>
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 mt-1">
+              <div className="flex items-center justify-between md:block">
+                <div className="text-sm md:text-2xl font-bold text-gray-900 tracking-tight order-2 md:order-1">1,050</div>
+                <div className="text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5 order-1 md:order-2">Laki-Laki</div>
               </div>
-              <div className="w-px h-8 bg-gray-200"></div>
-              <div>
-                <div className="text-lg md:text-2xl font-bold text-gray-900 tracking-tight">1,110</div>
-                <div className="text-[9px] md:text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5">Perempuan</div>
+              <div className="hidden md:block w-px h-8 bg-gray-200"></div>
+              <div className="flex items-center justify-between md:block">
+                <div className="text-sm md:text-2xl font-bold text-gray-900 tracking-tight order-2 md:order-1">1,110</div>
+                <div className="text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5 order-1 md:order-2">Perempuan</div>
               </div>
             </div>
           </CardContent>
