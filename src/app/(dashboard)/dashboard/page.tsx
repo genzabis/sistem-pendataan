@@ -113,11 +113,11 @@ export default function DashboardPage() {
           <CardContent>
             <div className="h-[250px] w-full mt-4">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={dataRW} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
-                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fontWeight: 600, fill: '#6b7280' }} dy={10} />
+                <BarChart data={dataRW} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 600, fill: '#6b7280' }} dy={10} interval={0} />
                   <YAxis hide />
                   <RechartsTooltip cursor={{ fill: '#f3f4f6' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                  <Bar dataKey="total" radius={[6, 6, 0, 0]} barSize={50}>
+                  <Bar dataKey="total" radius={[6, 6, 0, 0]} maxBarSize={50}>
                     {dataRW.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill="#4c1d95" /> // Darker purple for bars
                     ))}
