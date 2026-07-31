@@ -94,7 +94,7 @@ export default function LaporanPage() {
             <CardContent className="space-y-4 pt-6">
               <div className="space-y-2">
                 <Label>Jenis Laporan</Label>
-                <Select value={reportType} onValueChange={setReportType}>
+                <Select value={reportType} onValueChange={(val) => val && setReportType(val)}>
                   <SelectTrigger className="w-full bg-white">
                     <SelectValue placeholder="Pilih Jenis Laporan" />
                   </SelectTrigger>
