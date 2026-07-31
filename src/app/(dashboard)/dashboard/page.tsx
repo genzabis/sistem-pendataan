@@ -22,7 +22,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Ringkasan Dasbor</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-primary mb-2">Ringkasan Dasbor</h1>
         <p className="text-gray-500">Data kependudukan real-time Desa Sukamulya.</p>
       </div>
 

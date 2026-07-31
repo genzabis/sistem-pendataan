@@ -42,8 +42,8 @@ function PenggunaTab() {
   };
 
   return (
-    <Card className="border-none shadow-sm">
-      <CardHeader className="bg-gray-50/50 border-b pb-6 flex flex-row items-center justify-between">
+    <Card className="shadow-sm">
+      <CardHeader className="bg-gray-50/50 border-b pb-6 flex flex-row flex-wrap items-center justify-between gap-4">
         <div>
           <CardTitle className="text-xl">Pengguna & Hak Akses</CardTitle>
           <CardDescription className="mt-1">Kelola akun staf yang dapat masuk ke dalam sistem.</CardDescription>
@@ -151,58 +151,58 @@ export default function PengaturanPage() {
   return (
     <div className="flex-1 space-y-6 p-4 md:p-8 pt-6 max-w-6xl mx-auto">
       <div>
-        <h2 className="text-3xl font-bold tracking-tight text-primary">Pengaturan Sistem</h2>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">Pengaturan Sistem</h2>
         <p className="text-muted-foreground mt-1">
           Konfigurasi aplikasi dan manajemen profil desa.
         </p>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-8 mt-8">
+      <div className="flex flex-col md:flex-row gap-6 mt-8">
         {/* Sidebar Nav */}
-        <div className="w-full md:w-64 shrink-0 space-y-2">
+        <div className="w-full md:w-64 shrink-0 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           <button 
             onClick={() => setActiveTab("profil")}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-              activeTab === "profil" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100"
+            className={`whitespace-nowrap shrink-0 md:w-full flex items-center gap-3 px-4 py-2.5 md:py-3 rounded-lg text-sm font-medium transition-colors ${
+              activeTab === "profil" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100 border border-transparent hover:border-gray-200 md:border-none"
             }`}
           >
-            <Building2 className="w-5 h-5" />
+            <Building2 className="w-4 h-4 md:w-5 md:h-5" />
             Profil Desa
           </button>
           <button 
             onClick={() => setActiveTab("pengguna")}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-              activeTab === "pengguna" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100"
+            className={`whitespace-nowrap shrink-0 md:w-full flex items-center gap-3 px-4 py-2.5 md:py-3 rounded-lg text-sm font-medium transition-colors ${
+              activeTab === "pengguna" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100 border border-transparent hover:border-gray-200 md:border-none"
             }`}
           >
-            <Users className="w-5 h-5" />
+            <Users className="w-4 h-4 md:w-5 md:h-5" />
             Pengguna & Akses
           </button>
           <button 
             onClick={() => setActiveTab("akun")}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-              activeTab === "akun" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100"
+            className={`whitespace-nowrap shrink-0 md:w-full flex items-center gap-3 px-4 py-2.5 md:py-3 rounded-lg text-sm font-medium transition-colors ${
+              activeTab === "akun" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100 border border-transparent hover:border-gray-200 md:border-none"
             }`}
           >
-            <User className="w-5 h-5" />
+            <User className="w-4 h-4 md:w-5 md:h-5" />
             Akun Saya
           </button>
           <button 
             onClick={() => setActiveTab("keamanan")}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-              activeTab === "keamanan" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100"
+            className={`whitespace-nowrap shrink-0 md:w-full flex items-center gap-3 px-4 py-2.5 md:py-3 rounded-lg text-sm font-medium transition-colors ${
+              activeTab === "keamanan" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100 border border-transparent hover:border-gray-200 md:border-none"
             }`}
           >
-            <Shield className="w-5 h-5" />
+            <Shield className="w-4 h-4 md:w-5 md:h-5" />
             Keamanan
           </button>
           <button 
             onClick={() => setActiveTab("notifikasi")}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-              activeTab === "notifikasi" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100"
+            className={`whitespace-nowrap shrink-0 md:w-full flex items-center gap-3 px-4 py-2.5 md:py-3 rounded-lg text-sm font-medium transition-colors ${
+              activeTab === "notifikasi" ? "bg-primary text-white shadow-md" : "text-gray-600 hover:bg-gray-100 border border-transparent hover:border-gray-200 md:border-none"
             }`}
           >
-            <Bell className="w-5 h-5" />
+            <Bell className="w-4 h-4 md:w-5 md:h-5" />
             Notifikasi
           </button>
         </div>
@@ -213,7 +213,7 @@ export default function PengaturanPage() {
           {activeTab === "pengguna" && <PenggunaTab />}
 
           {activeTab === "profil" && (
-            <Card className="border-none shadow-sm">
+            <Card className="shadow-sm">
               <CardHeader className="bg-gray-50/50 border-b pb-6">
                 <CardTitle className="text-xl">Profil Desa Sukamulya</CardTitle>
                 <CardDescription>Informasi ini akan muncul pada kop surat dan dokumen resmi.</CardDescription>
@@ -257,7 +257,7 @@ export default function PengaturanPage() {
           )}
 
           {activeTab === "akun" && (
-            <Card className="border-none shadow-sm">
+            <Card className="shadow-sm">
               <CardHeader className="bg-gray-50/50 border-b pb-6">
                 <CardTitle className="text-xl">Informasi Akun</CardTitle>
                 <CardDescription>Kelola detail informasi pribadi Anda sebagai pengelola sistem.</CardDescription>
@@ -286,7 +286,7 @@ export default function PengaturanPage() {
           )}
 
           {activeTab === "keamanan" && (
-            <Card className="border-none shadow-sm">
+            <Card className="shadow-sm">
               <CardHeader className="bg-gray-50/50 border-b pb-6">
                 <CardTitle className="text-xl">Ganti Kata Sandi</CardTitle>
                 <CardDescription>Pastikan akun Anda menggunakan kata sandi yang kuat.</CardDescription>
@@ -314,7 +314,7 @@ export default function PengaturanPage() {
           )}
 
           {activeTab === "notifikasi" && (
-            <Card className="border-none shadow-sm">
+            <Card className="shadow-sm">
               <CardHeader className="bg-gray-50/50 border-b pb-6">
                 <CardTitle className="text-xl">Pengaturan Notifikasi</CardTitle>
                 <CardDescription>Pilih notifikasi apa saja yang ingin Anda terima.</CardDescription>

@@ -107,7 +107,7 @@ export default function ArsipSuratPage() {
               <ArrowLeft className="w-4 h-4 mr-1" /> Kembali ke Layanan
             </Link>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Arsip Surat Keluar</h2>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">Arsip Surat Keluar</h2>
           <p className="text-sm md:text-base text-muted-foreground mt-1">
             Buku register digital untuk riwayat surat keterangan yang telah diterbitkan.
           </p>

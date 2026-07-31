@@ -6,6 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function LaporanPage() {
   const [reportType, setReportType] = useState("penduduk");
@@ -53,19 +62,21 @@ export default function LaporanPage() {
     <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-primary">Laporan & Rekapitulasi</h2>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">Laporan & Rekapitulasi</h2>
           <p className="text-muted-foreground mt-1">
             Hasilkan dan unduh laporan kependudukan Desa Sukamulya.
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          <Button variant="outline" className="gap-2 print:hidden" onClick={handlePrint}>
+        <div className="flex items-center gap-2 mt-2 md:mt-0 self-start w-full sm:w-auto">
+          <Button variant="outline" className="flex-1 sm:flex-none gap-2 print:hidden" onClick={handlePrint}>
             <Printer className="w-4 h-4" />
-            Cetak Preview
+            <span className="hidden sm:inline">Cetak Preview</span>
+            <span className="sm:hidden">Cetak</span>
           </Button>
-          <Button className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white print:hidden" onClick={handleExportExcel}>
+          <Button className="flex-1 sm:flex-none gap-2 bg-emerald-600 hover:bg-emerald-700 text-white print:hidden" onClick={handleExportExcel}>
             <Download className="w-4 h-4" />
-            Export Excel
+            <span className="hidden sm:inline">Export Excel</span>
+            <span className="sm:hidden">Excel</span>
           </Button>
         </div>
       </div>
@@ -73,7 +84,7 @@ export default function LaporanPage() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6 print:block">
         {/* Filter Section - Hidden during print */}
         <div className="md:col-span-4 lg:col-span-3 space-y-6 print:hidden">
-          <Card className="border-none shadow-sm">
+          <Card className="shadow-sm">
             <CardHeader className="bg-gray-50/50 border-b pb-4">
               <CardTitle className="text-lg font-semibold text-gray-800 flex items-center gap-2">
                 <Filter className="w-5 h-5 text-primary" />
@@ -83,16 +94,17 @@ export default function LaporanPage() {
             <CardContent className="space-y-4 pt-6">
               <div className="space-y-2">
                 <Label>Jenis Laporan</Label>
-                <select 
-                  className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
-                  value={reportType}
-                  onChange={(e) => setReportType(e.target.value)}
-                >
-                  <option value="penduduk">Data Induk Penduduk</option>
-                  <option value="mutasi">Mutasi (Datang/Pindah)</option>
-                  <option value="kelahiran">Rekap Kelahiran</option>
-                  <option value="kematian">Rekap Kematian</option>
-                </select>
+                <Select value={reportType} onValueChange={setReportType}>
+                  <SelectTrigger className="w-full bg-white">
+                    <SelectValue placeholder="Pilih Jenis Laporan" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="penduduk">Data Induk Penduduk</SelectItem>
+                    <SelectItem value="mutasi">Mutasi (Datang/Pindah)</SelectItem>
+                    <SelectItem value="kelahiran">Rekap Kelahiran</SelectItem>
+                    <SelectItem value="kematian">Rekap Kematian</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">
@@ -107,12 +119,17 @@ export default function LaporanPage() {
 
               <div className="space-y-2">
                 <Label>Berdasarkan RW</Label>
-                <select className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
-                  <option value="all">Semua RW</option>
-                  <option value="01">RW 01</option>
-                  <option value="02">RW 02</option>
-                  <option value="03">RW 03</option>
-                </select>
+                <Select defaultValue="all">
+                  <SelectTrigger className="w-full bg-white">
+                    <SelectValue placeholder="Semua RW" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Semua RW</SelectItem>
+                    <SelectItem value="01">RW 01</SelectItem>
+                    <SelectItem value="02">RW 02</SelectItem>
+                    <SelectItem value="03">RW 03</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <Button className="w-full mt-4" onClick={() => setIsReportGenerated(true)}>Buat Laporan</Button>
@@ -122,7 +139,7 @@ export default function LaporanPage() {
 
         {/* Preview Section */}
         <div className="md:col-span-8 lg:col-span-9 print:col-span-12">
-          <Card className="border-none shadow-sm h-full min-h-[500px] print:shadow-none print:min-h-0">
+          <Card className="shadow-sm h-full min-h-[500px] print:shadow-none print:min-h-0">
             <CardHeader className="bg-gray-50/50 border-b pb-4 print:bg-white print:border-none">
               <CardTitle className="text-lg font-semibold text-gray-800 flex items-center gap-2 print:text-2xl print:justify-center">
                 <FileText className="w-5 h-5 text-primary print:hidden" />
@@ -144,30 +161,30 @@ export default function LaporanPage() {
                     <p className="text-gray-600">Kecamatan Langkaplancar, Kabupaten Pangandaran</p>
                     <p className="text-gray-600 mt-2 font-medium">Kategori Laporan: {reportType}</p>
                   </div>
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-gray-100 print:bg-gray-200">
-                        <th className="border p-2 text-left text-sm font-semibold text-gray-700">No</th>
-                        <th className="border p-2 text-left text-sm font-semibold text-gray-700">NIK</th>
-                        <th className="border p-2 text-left text-sm font-semibold text-gray-700">Nama Lengkap</th>
-                        <th className="border p-2 text-left text-sm font-semibold text-gray-700">RT</th>
-                        <th className="border p-2 text-left text-sm font-semibold text-gray-700">RW</th>
-                        <th className="border p-2 text-left text-sm font-semibold text-gray-700">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                  <Table className="print:border-collapse print:border print:border-black">
+                    <TableHeader className="bg-gray-50 print:bg-transparent print:border-black">
+                      <TableRow className="print:border-black">
+                        <TableHead className="w-[50px] font-semibold print:border print:border-black print:text-black">No</TableHead>
+                        <TableHead className="w-[200px] font-semibold print:border print:border-black print:text-black">NIK</TableHead>
+                        <TableHead className="font-semibold print:border print:border-black print:text-black">Nama Lengkap</TableHead>
+                        <TableHead className="font-semibold print:border print:border-black print:text-black">RT</TableHead>
+                        <TableHead className="font-semibold print:border print:border-black print:text-black">RW</TableHead>
+                        <TableHead className="font-semibold print:border print:border-black print:text-black">Status</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
                       {mockReportData.map((row) => (
-                        <tr key={row.no} className="hover:bg-gray-50 print:hover:bg-transparent">
-                          <td className="border p-2 text-sm text-gray-600">{row.no}</td>
-                          <td className="border p-2 text-sm font-medium text-gray-900">{row.nik}</td>
-                          <td className="border p-2 text-sm text-gray-800">{row.nama}</td>
-                          <td className="border p-2 text-sm text-gray-600">{row.rt}</td>
-                          <td className="border p-2 text-sm text-gray-600">{row.rw}</td>
-                          <td className="border p-2 text-sm text-gray-600">{row.status}</td>
-                        </tr>
+                        <TableRow key={row.no} className="hover:bg-gray-50/50 print:border-black print:hover:bg-transparent">
+                          <TableCell className="font-medium text-gray-600 print:border print:border-black print:text-black">{row.no}</TableCell>
+                          <TableCell className="font-medium text-gray-900 print:border print:border-black print:text-black">{row.nik}</TableCell>
+                          <TableCell className="print:border print:border-black print:text-black">{row.nama}</TableCell>
+                          <TableCell className="print:border print:border-black print:text-black">{row.rt}</TableCell>
+                          <TableCell className="print:border print:border-black print:text-black">{row.rw}</TableCell>
+                          <TableCell className="print:border print:border-black print:text-black">{row.status}</TableCell>
+                        </TableRow>
                       ))}
-                    </tbody>
-                  </table>
+                    </TableBody>
+                  </Table>
                   <div className="hidden print:flex justify-end mt-12">
                     <div className="text-center">
                       <p className="mb-16">Mengetahui,<br/>Kepala Desa Sukamulya</p>

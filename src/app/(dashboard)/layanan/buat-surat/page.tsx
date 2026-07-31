@@ -84,21 +84,19 @@ export default function BuatSuratPage() {
 
   return (
     <div className="flex-1 space-y-6 p-4 md:p-8 pt-6 max-w-4xl mx-auto">
-      <div className="flex items-center gap-4 mb-2">
-        <Link href="/layanan">
-          <Button variant="ghost" size="icon" className="rounded-full">
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-        </Link>
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight text-primary">Buat Surat Keterangan</h2>
-          <p className="text-muted-foreground mt-1">
-            Formulir pintar untuk membuat berbagai jenis surat pengantar dan keterangan desa.
-          </p>
+      <div>
+        <div className="flex items-center gap-2 mb-2">
+          <Link href="/layanan" className="text-sm text-muted-foreground hover:text-primary flex items-center">
+            <ArrowLeft className="w-4 h-4 mr-1" /> Kembali ke Layanan
+          </Link>
         </div>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">Buat Surat Keterangan</h2>
+        <p className="text-sm md:text-base text-muted-foreground mt-1">
+          Formulir pintar untuk membuat berbagai jenis surat pengantar dan keterangan desa.
+        </p>
       </div>
 
-      <Card className="border-t-4 border-t-primary shadow-sm">
+      <Card className="shadow-sm">
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             
@@ -112,8 +110,8 @@ export default function BuatSuratPage() {
               <div className="space-y-2">
                 <Label htmlFor="jenisSurat">Jenis Layanan Surat</Label>
                 <Select onValueChange={(v: string | null) => v && setJenisSurat(v)} value={jenisSurat}>
-                  <SelectTrigger className="w-full text-base h-12">
-                    <SelectValue placeholder="-- Klik untuk memilih jenis surat yang akan dibuat --" />
+                  <SelectTrigger className="w-full text-sm md:text-base h-12">
+                    <SelectValue placeholder="-- Pilih Jenis Surat --" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Surat Keterangan Usaha (SKU)">Surat Keterangan Usaha (SKU)</SelectItem>

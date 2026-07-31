@@ -35,7 +35,7 @@ export default function BantuanPage() {
       
       {/* Header & Search */}
       <div className="text-center space-y-4 py-8 bg-primary/5 rounded-2xl border border-primary/10">
-        <h2 className="text-3xl font-bold tracking-tight text-primary">Pusat Bantuan & Panduan</h2>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">Pusat Bantuan & Panduan</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Temukan jawaban, panduan penggunaan, dan solusi atas kendala yang Anda alami saat menggunakan Portal Sistem Pendataan Desa.
         </p>
