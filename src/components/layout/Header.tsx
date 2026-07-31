@@ -28,7 +28,7 @@ export function Header() {
                       userRole === "RT_RW" ? "Kepala Dusun" : "Admin";
   
   return (
-    <header className="h-16 md:h-20 bg-white border-b flex items-center justify-between px-3 md:px-6 shrink-0 print:hidden">
+    <header className="h-16 md:h-20 bg-white/80 backdrop-blur-md border-b flex items-center justify-between px-3 md:px-6 shrink-0 print:hidden sticky top-0 z-30">
       <div className="flex items-center gap-2 md:gap-4 flex-1 max-w-xl">
         <button onClick={toggleSidebar} className="p-1.5 md:p-2 hover:bg-gray-100 rounded-md text-gray-500 transition-colors shrink-0">
           <Menu className="w-5 h-5 md:w-6 md:h-6" />
