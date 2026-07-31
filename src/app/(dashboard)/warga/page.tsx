@@ -82,14 +82,14 @@ export default function WargaPage() {
           </p>
         </div>
         <div className="grid grid-cols-2 gap-2 w-full sm:flex sm:w-auto sm:space-x-2 sm:gap-0">
-          <Button variant="outline" className="w-full text-gray-600 hover:bg-gray-50" onClick={handleExportCSV}>
+          <Button variant="outline" className="w-full sm:w-auto text-gray-600 hover:bg-gray-50" onClick={handleExportCSV}>
             <FileDown className="mr-2 h-4 w-4 shrink-0" />
             <span className="inline text-xs sm:text-sm">Export CSV</span>
           </Button>
-          <div className="w-full">
+          <div className="w-full sm:w-auto">
             <WargaFormDialog 
               trigger={
-                <Button className="w-full bg-primary hover:bg-primary/90 text-white shadow-sm transition-shadow">
+                <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white shadow-sm transition-shadow">
                   <Plus className="mr-1 sm:mr-2 h-4 w-4 shrink-0" /> <span className="text-xs sm:text-sm">Tambah Data</span>
                 </Button>
               }
