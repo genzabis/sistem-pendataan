@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, FileText, Activity, Briefcase, MapPin, Edit3, UserPlus } from "lucide-react";
+import { Users, FileText, Activity, Briefcase, MapPin, Edit3, UserPlus, TrendingUp } from "lucide-react";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip as RechartsTooltip, Cell, PieChart, Pie, Sector } from "recharts";
 
 const dataRW = [
@@ -26,18 +26,18 @@ export default function DashboardPage() {
         <p className="text-gray-500">Data kependudukan real-time Desa Sukamulya.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
         {/* Card Total Penduduk */}
         <Card className="border border-gray-200 shadow-sm bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Total Penduduk</CardTitle>
-            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-              <Users className="w-4 h-4" />
+          <CardHeader className="flex flex-row items-center justify-between pb-2 gap-1">
+            <CardTitle className="text-xs md:text-sm font-medium text-gray-600">Total Penduduk</CardTitle>
+            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <Users className="w-3 h-3 md:w-4 md:h-4" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-gray-900 mb-1">2,160</div>
-            <p className="text-xs font-medium text-emerald-600 flex items-center">
+            <div className="text-xl md:text-3xl font-bold text-gray-900 mb-1">2,160</div>
+            <p className="text-[10px] md:text-xs font-medium text-emerald-600 flex items-center">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
               +12 bulan ini
             </p>
@@ -46,15 +46,15 @@ export default function DashboardPage() {
 
         {/* Card Total KK */}
         <Card className="border border-gray-200 shadow-sm bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Total Kartu Keluarga</CardTitle>
-            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-              <FileText className="w-4 h-4" />
+          <CardHeader className="flex flex-row items-center justify-between pb-2 gap-1">
+            <CardTitle className="text-xs md:text-sm font-medium text-gray-600">Total KK</CardTitle>
+            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <FileText className="w-3 h-3 md:w-4 md:h-4" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-gray-900 mb-1">645</div>
-            <p className="text-xs font-medium text-emerald-600 flex items-center">
+            <div className="text-xl md:text-3xl font-bold text-gray-900 mb-1">645</div>
+            <p className="text-[10px] md:text-xs font-medium text-emerald-600 flex items-center">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
               +3 bulan ini
             </p>
@@ -63,38 +63,38 @@ export default function DashboardPage() {
 
         {/* Card Rasio Jenis Kelamin */}
         <Card className="border border-gray-200 shadow-sm bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Rasio Jenis Kelamin</CardTitle>
-            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-              <Activity className="w-4 h-4" />
+          <CardHeader className="flex flex-row items-center justify-between pb-2 gap-1">
+            <CardTitle className="text-xs md:text-sm font-medium text-gray-600">Rasio P/W</CardTitle>
+            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <Activity className="w-3 h-3 md:w-4 md:h-4" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-6 mt-1">
+            <div className="flex items-center gap-2 md:gap-6 mt-1">
               <div>
-                <div className="text-2xl font-bold text-gray-900 tracking-tight">1,050</div>
-                <div className="text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5">Laki-Laki</div>
+                <div className="text-lg md:text-2xl font-bold text-gray-900 tracking-tight">1,050</div>
+                <div className="text-[9px] md:text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5">Laki-Laki</div>
               </div>
               <div className="w-px h-8 bg-gray-200"></div>
               <div>
-                <div className="text-2xl font-bold text-gray-900 tracking-tight">1,110</div>
-                <div className="text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5">Perempuan</div>
+                <div className="text-lg md:text-2xl font-bold text-gray-900 tracking-tight">1,110</div>
+                <div className="text-[9px] md:text-[10px] uppercase font-bold text-primary tracking-wider mt-0.5">Perempuan</div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Card Penduduk Usia Produktif */}
+        {/* Card Warga Miskin */}
         <Card className="border border-gray-200 shadow-sm bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Penduduk Usia Produktif</CardTitle>
-            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-              <Briefcase className="w-4 h-4" />
+          <CardHeader className="flex flex-row items-center justify-between pb-2 gap-1">
+            <CardTitle className="text-xs md:text-sm font-medium text-gray-600">Pra Sejahtera</CardTitle>
+            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
+              <TrendingUp className="w-3 h-3 md:w-4 md:h-4" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-gray-900 mb-1">1,420</div>
-            <p className="text-xs font-medium text-gray-500">
+            <div className="text-xl md:text-3xl font-bold text-gray-900 mb-1">124</div>
+            <p className="text-[10px] md:text-xs font-medium text-orange-600 flex items-center">
               65,7% dari total penduduk
             </p>
           </CardContent>
