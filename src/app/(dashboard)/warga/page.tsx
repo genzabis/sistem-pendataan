@@ -102,9 +102,9 @@ export default function WargaPage() {
             />
           </div>
           
-          <div className="flex w-full md:w-auto items-center gap-3">
+          <div className="grid grid-cols-2 w-full md:flex md:w-auto items-center gap-2 md:gap-3">
             <Select value={filterDusun} onValueChange={(v) => v && setFilterDusun(v)}>
-              <SelectTrigger className="w-full md:w-[150px] bg-white">
+              <SelectTrigger className="w-full md:w-[150px] bg-white text-xs md:text-sm">
                 <SelectValue placeholder="Semua Dusun" />
               </SelectTrigger>
               <SelectContent>
@@ -115,7 +115,7 @@ export default function WargaPage() {
             </Select>
 
             <Select value={filterStatus} onValueChange={(v) => v && setFilterStatus(v)}>
-              <SelectTrigger className="w-full md:w-[160px] bg-white">
+              <SelectTrigger className="w-full md:w-[160px] bg-white text-xs md:text-sm">
                 <SelectValue placeholder="Status Warga" />
               </SelectTrigger>
               <SelectContent>
@@ -198,13 +198,13 @@ export default function WargaPage() {
           </Table>
         </div>
         
-        <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100 bg-gray-50/30">
-          <div className="text-sm text-gray-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-gray-100 bg-gray-50/30">
+          <div className="text-xs md:text-sm text-gray-500">
             Menampilkan <span className="font-medium text-gray-900">{filteredData.length}</span> dari <span className="font-medium text-gray-900">{data.length}</span> data
           </div>
-          <div className="flex space-x-2">
-            <Button variant="outline" size="sm" disabled>Sebelumnya</Button>
-            <Button variant="outline" size="sm" disabled>Selanjutnya</Button>
+          <div className="flex space-x-2 w-full sm:w-auto">
+            <Button variant="outline" size="sm" disabled className="flex-1 sm:flex-none">Sebelumnya</Button>
+            <Button variant="outline" size="sm" disabled className="flex-1 sm:flex-none">Selanjutnya</Button>
           </div>
         </div>
       </div>
