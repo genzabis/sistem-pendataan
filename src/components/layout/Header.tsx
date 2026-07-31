@@ -28,21 +28,21 @@ export function Header() {
                       userRole === "RT_RW" ? "Kepala Dusun" : "Admin";
   
   return (
-    <header className="h-20 bg-white border-b flex items-center justify-between px-6 shrink-0 print:hidden">
-      <div className="flex items-center gap-4 flex-1 max-w-xl">
-        <button onClick={toggleSidebar} className="p-2 hover:bg-gray-100 rounded-md text-gray-500 transition-colors">
-          <Menu className="w-5 h-5" />
+    <header className="h-16 md:h-20 bg-white border-b flex items-center justify-between px-3 md:px-6 shrink-0 print:hidden">
+      <div className="flex items-center gap-2 md:gap-4 flex-1 max-w-xl">
+        <button onClick={toggleSidebar} className="p-1.5 md:p-2 hover:bg-gray-100 rounded-md text-gray-500 transition-colors shrink-0">
+          <Menu className="w-5 h-5 md:w-6 md:h-6" />
         </button>
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+        <div className="relative flex-1 max-w-[150px] sm:max-w-full">
+          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-gray-400" />
           <Input 
-            placeholder="Cari data penduduk..." 
-            className="w-full pl-10 h-10 bg-gray-50/50 border-gray-200 rounded-full"
+            placeholder="Cari..." 
+            className="w-full pl-8 md:pl-10 h-9 md:h-10 text-xs md:text-sm bg-gray-50/50 border-gray-200 rounded-full"
           />
         </div>
       </div>
 
-      <div className="flex items-center gap-6 ml-auto">
+      <div className="flex items-center gap-2 md:gap-6 ml-auto shrink-0">
         <nav className="hidden md:flex gap-6">
           <Link 
             href="/dashboard" 
@@ -64,11 +64,11 @@ export function Header() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-4 border-l pl-6">
+        <div className="flex items-center gap-1 md:gap-4 border-l-0 md:border-l pl-2 md:pl-6">
           <DropdownMenu>
-            <DropdownMenuTrigger className="relative p-2 text-primary hover:bg-gray-50 rounded-full transition-colors outline-none">
-              <Bell className="w-5 h-5" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+            <DropdownMenuTrigger className="relative p-1.5 md:p-2 text-primary hover:bg-gray-50 rounded-full transition-colors outline-none shrink-0">
+              <Bell className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="absolute top-1 md:top-1.5 right-1 md:right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-80 rounded-xl p-2">
               <DropdownMenuGroup>
@@ -97,8 +97,8 @@ export function Header() {
           </DropdownMenu>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="p-2 text-primary hover:bg-gray-50 rounded-full transition-colors outline-none">
-              <Mail className="w-5 h-5" />
+            <DropdownMenuTrigger className="p-1.5 md:p-2 text-primary hover:bg-gray-50 rounded-full transition-colors outline-none shrink-0 hidden sm:block">
+              <Mail className="w-4 h-4 md:w-5 md:h-5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-80 rounded-xl p-2">
               <DropdownMenuGroup>
@@ -122,13 +122,13 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="flex items-center gap-3 pl-4 border-l">
+          <div className="flex items-center gap-2 md:gap-3 pl-2 md:pl-4 border-l-0 md:border-l shrink-0">
             <div className="text-right hidden sm:block">
               <p className="text-sm font-semibold text-primary">{userName}</p>
               <p className="text-xs text-gray-500">{displayRole} - Portal Sukamulya</p>
             </div>
-            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary">
-              <User className="w-5 h-5" />
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary shrink-0">
+              <User className="w-4 h-4 md:w-5 md:h-5" />
             </div>
           </div>
         </div>
