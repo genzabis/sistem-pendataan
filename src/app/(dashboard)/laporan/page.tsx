@@ -59,8 +59,8 @@ export default function LaporanPage() {
   };
 
   return (
-    <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="flex-1 space-y-6 p-4 md:p-8 pt-6 print:p-0 print:space-y-0 print:bg-white">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 print:hidden">
         <div>
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">Laporan & Rekapitulasi</h2>
           <p className="text-muted-foreground mt-1">
@@ -139,15 +139,15 @@ export default function LaporanPage() {
 
         {/* Preview Section */}
         <div className="md:col-span-8 lg:col-span-9 print:col-span-12">
-          <Card className="shadow-sm h-full min-h-[500px] print:shadow-none print:min-h-0">
-            <CardHeader className="bg-gray-50/50 border-b pb-4 print:bg-white print:border-none">
-              <CardTitle className="text-lg font-semibold text-gray-800 flex items-center gap-2 print:text-2xl print:justify-center">
-                <FileText className="w-5 h-5 text-primary print:hidden" />
+          <Card className="shadow-sm h-full min-h-[500px] print:shadow-none print:min-h-0 print:border-none print:bg-transparent">
+            <CardHeader className="bg-gray-50/50 border-b pb-4 print:hidden">
+              <CardTitle className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <FileText className="w-5 h-5 text-primary" />
                 Preview Dokumen
               </CardTitle>
-              <CardDescription className="print:hidden">Menampilkan baris pertama dari laporan yang dipilih.</CardDescription>
+              <CardDescription>Menampilkan baris pertama dari laporan yang dipilih.</CardDescription>
             </CardHeader>
-            <CardContent className="pt-6 print:pt-0">
+            <CardContent className="pt-6 print:p-0">
               {!isReportGenerated ? (
                 <div className="border rounded-xl bg-gray-50/30 flex flex-col items-center justify-center h-[400px] text-gray-400 p-8 text-center border-dashed print:hidden">
                   <TableIcon className="w-16 h-16 text-gray-300 mb-4" />
@@ -155,13 +155,51 @@ export default function LaporanPage() {
                   <p className="text-sm">Silakan pilih parameter di samping dan klik "Buat Laporan" untuk melihat pratinjau data sebelum mengunduh.</p>
                 </div>
               ) : (
-                <div className="overflow-x-auto print:overflow-visible">
-                  <div className="hidden print:block mb-6 text-center">
-                    <h1 className="text-xl font-bold uppercase">Laporan Kependudukan Desa Sukamulya</h1>
-                    <p className="text-gray-600">Kecamatan Langkaplancar, Kabupaten Pangandaran</p>
-                    <p className="text-gray-600 mt-2 font-medium">Kategori Laporan: {reportType}</p>
+                <div className="overflow-x-auto print:overflow-visible print-document">
+                  <style type="text/css" media="print">
+                    {`
+                      @media print {
+                        .print-document {
+                          font-family: "Times New Roman", Times, serif !important;
+                          color: black !important;
+                        }
+                        .print-document table {
+                          font-size: 11pt !important;
+                        }
+                        @page { 
+                          size: A4 portrait; 
+                          margin: 20mm; 
+                        }
+                        body {
+                          background: white !important;
+                        }
+                      }
+                    `}
+                  </style>
+                  <div className="hidden print:block mb-8">
+                    {/* KOP Surat */}
+                    <div className="flex items-center justify-between border-b-[3px] border-double border-black pb-4 mb-6">
+                      <div className="w-[80px] h-[100px] flex items-center justify-center shrink-0">
+                        <img src="/logo.png" alt="Logo Pangandaran" className="w-[80px] h-auto object-contain" />
+                      </div>
+                      <div className="flex-1 text-center px-4">
+                        <h1 className="text-xl font-bold uppercase tracking-wider">Pemerintah Kabupaten Pangandaran</h1>
+                        <h2 className="text-xl font-bold uppercase tracking-wider">Kecamatan Langkaplancar</h2>
+                        <h3 className="text-2xl font-bold uppercase tracking-widest mt-1 mb-1">Desa Sukamulya</h3>
+                        <p className="text-sm">Jalan Raya Sukamulya, Kecamatan Langkaplancar, Kabupaten Pangandaran, Jawa Barat 46391</p>
+                      </div>
+                      <div className="w-[80px] shrink-0"></div> {/* Spacer for centering */}
+                    </div>
+                    
+                    {/* Judul Laporan */}
+                    <div className="text-center">
+                      <h4 className="text-xl font-bold uppercase underline underline-offset-4 decoration-2">
+                        LAPORAN {reportType === "penduduk" ? "DATA INDUK PENDUDUK" : reportType === "mutasi" ? "MUTASI PENDUDUK" : reportType === "kelahiran" ? "REKAPITULASI KELAHIRAN" : "REKAPITULASI KEMATIAN"}
+                      </h4>
+                      <p className="text-sm mt-2 text-gray-700">Dicetak pada: {new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    </div>
                   </div>
-                  <Table className="print:border-collapse print:border print:border-black">
+                  <Table className="print:border-collapse print:border print:border-black mt-4">
                     <TableHeader className="bg-gray-50 print:bg-transparent print:border-black">
                       <TableRow className="print:border-black">
                         <TableHead className="w-[50px] font-semibold print:border print:border-black print:text-black">No</TableHead>
@@ -188,7 +226,7 @@ export default function LaporanPage() {
                   <div className="hidden print:flex justify-end mt-12">
                     <div className="text-center">
                       <p className="mb-16">Mengetahui,<br/>Kepala Desa Sukamulya</p>
-                      <p className="font-bold underline">H. Taryono, SE</p>
+                      <p className="font-bold underline uppercase">JAJANG SOMANTRI</p>
                     </div>
                   </div>
                 </div>

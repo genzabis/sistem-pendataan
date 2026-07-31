@@ -47,20 +47,22 @@ function CetakSuratContent() {
   if (!isReady) return null;
 
   return (
-    <div className="min-h-screen print:min-h-0 bg-gray-100 print:bg-white py-8 print:py-0 flex flex-col items-center text-black print:block" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
+    <div className="min-h-screen print:min-h-0 bg-gray-100 print:bg-white py-4 md:py-8 print:py-0 text-black print:block" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
       {/* Action Buttons (Hidden on Print) */}
-      <div className="no-print w-[215mm] flex justify-end gap-4 mb-6">
-        <Button variant="outline" className="bg-white shadow-sm" onClick={() => window.history.back()}>
+      <div className="no-print w-full max-w-[215mm] mx-auto px-4 md:px-0 flex items-center justify-between sm:justify-end gap-2 sm:gap-3 mb-6 mt-2 md:mt-0">
+        <Button variant="outline" className="flex-1 sm:flex-none bg-white shadow-sm" onClick={() => window.history.back()}>
           <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
         </Button>
-        <Button onClick={() => window.print()} className="shadow-sm">
-          <Printer className="w-4 h-4 mr-2" /> Cetak Sekarang (Ctrl+P)
+        <Button onClick={() => window.print()} className="flex-1 sm:flex-none shadow-sm">
+          <Printer className="w-4 h-4 mr-2" /> 
+          <span className="hidden sm:inline">Cetak Sekarang (Ctrl+P)</span>
+          <span className="sm:hidden">Cetak</span>
         </Button>
       </div>
 
-      <div className="w-full overflow-x-auto flex justify-center print:block pb-10">
+      <div className="w-full overflow-x-auto print:block pb-10 px-4 md:px-0">
         {/* F4 (Folio) Paper Container */}
-        <div className="bg-white shadow-xl print:shadow-none relative overflow-hidden print:overflow-visible w-[215mm] shrink-0 min-h-[330mm] p-[20mm] print:w-full print:min-h-0 print:m-0">
+        <div className="bg-white shadow-xl print:shadow-none relative overflow-hidden print:overflow-visible w-[215mm] shrink-0 min-h-[330mm] p-[15mm] md:p-[20mm] print:w-full print:min-h-0 print:p-0 print:m-0 mx-0 lg:mx-auto">
         
         {/* KOP Surat */}
         <div className="flex items-center justify-between border-b-[3px] border-double border-black pb-4 mb-8">
