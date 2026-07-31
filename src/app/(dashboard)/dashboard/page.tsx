@@ -104,9 +104,9 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Sebaran Penduduk per RW */}
         <Card className="lg:col-span-2 border-none shadow-sm bg-white">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-lg font-bold text-primary">Sebaran Penduduk per RW</CardTitle>
-            <select className="bg-gray-50 border-none text-xs font-bold rounded-md px-3 py-1.5 outline-none cursor-pointer">
+          <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <CardTitle className="text-base md:text-lg font-bold text-primary">Sebaran Penduduk per RW</CardTitle>
+            <select className="bg-gray-50 border-none text-xs font-bold rounded-md px-3 py-1.5 outline-none cursor-pointer w-full sm:w-auto">
               <option>Semua RW</option>
             </select>
           </CardHeader>
@@ -215,18 +215,18 @@ export default function DashboardPage() {
               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
               
               {/* Dummy Map Illustration */}
-              <div className="relative w-full h-full p-4 flex items-end gap-2">
+              <div className="relative w-full h-full p-2 md:p-4 flex items-end gap-1 md:gap-2">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                   <MapPin className="w-10 h-10 text-red-500 drop-shadow-md animate-bounce" />
+                   <MapPin className="w-8 h-8 md:w-10 md:h-10 text-red-500 drop-shadow-md animate-bounce" />
                 </div>
                 
-                <div className="bg-white/90 backdrop-blur px-4 py-3 rounded-lg shadow-sm w-1/2 border border-white/50 relative z-10">
-                  <div className="text-[10px] font-bold text-gray-400 tracking-wider">LUAS WILAYAH</div>
-                  <div className="text-lg font-bold text-primary">24,5 km²</div>
+                <div className="bg-white/90 backdrop-blur px-2 py-2 md:px-4 md:py-3 rounded-lg shadow-sm w-1/2 border border-white/50 relative z-10">
+                  <div className="text-[8px] md:text-[10px] font-bold text-gray-400 tracking-wider">LUAS WILAYAH</div>
+                  <div className="text-sm md:text-lg font-bold text-primary">24,5 km²</div>
                 </div>
-                <div className="bg-white/90 backdrop-blur px-4 py-3 rounded-lg shadow-sm w-1/2 border border-white/50 relative z-10">
-                  <div className="text-[10px] font-bold text-gray-400 tracking-wider">KEPADATAN</div>
-                  <div className="text-lg font-bold text-primary">88 jiwa/km²</div>
+                <div className="bg-white/90 backdrop-blur px-2 py-2 md:px-4 md:py-3 rounded-lg shadow-sm w-1/2 border border-white/50 relative z-10">
+                  <div className="text-[8px] md:text-[10px] font-bold text-gray-400 tracking-wider">KEPADATAN</div>
+                  <div className="text-sm md:text-lg font-bold text-primary">88 jiwa/km²</div>
                 </div>
               </div>
               
