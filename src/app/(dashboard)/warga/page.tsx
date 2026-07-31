@@ -81,12 +81,20 @@ export default function WargaPage() {
             Kelola data induk kependudukan Desa Sukamulya.
           </p>
         </div>
-        <div className="flex items-center space-x-2 self-start sm:self-auto">
-          <Button variant="outline" className="text-gray-600 hover:bg-gray-50" onClick={handleExportCSV}>
+        <div className="grid grid-cols-2 gap-2 w-full sm:flex sm:w-auto sm:space-x-2 sm:gap-0">
+          <Button variant="outline" className="w-full text-gray-600 hover:bg-gray-50" onClick={handleExportCSV}>
             <FileDown className="mr-2 h-4 w-4 shrink-0" />
-            <span className="hidden sm:inline">Export CSV</span>
+            <span className="inline text-xs sm:text-sm">Export CSV</span>
           </Button>
-          <WargaFormDialog />
+          <div className="w-full">
+            <WargaFormDialog 
+              trigger={
+                <Button className="w-full bg-primary hover:bg-primary/90 text-white shadow-sm transition-shadow">
+                  <Plus className="mr-1 sm:mr-2 h-4 w-4 shrink-0" /> <span className="text-xs sm:text-sm">Tambah Data</span>
+                </Button>
+              }
+            />
+          </div>
         </div>
       </div>
 
