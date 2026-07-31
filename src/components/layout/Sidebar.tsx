@@ -14,6 +14,12 @@ export function Sidebar() {
   const { data: session } = useSession();
   const role = (session?.user as any)?.role || "ADMIN";
   
+  const handleNavClick = () => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      useUiStore.getState().closeSidebar();
+    }
+  };
+  
   return (
     <>
       {/* Overlay on mobile when sidebar is open */}
@@ -51,49 +57,49 @@ export function Sidebar() {
         </div>
 
         <nav className="mt-2 space-y-1 px-4 mb-6">
-          <Link href="/dashboard" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/dashboard" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
+          <Link onClick={handleNavClick} href="/dashboard" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/dashboard" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
             {pathname === "/dashboard" && <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-md"></div>}
             <LayoutDashboard className="w-5 h-5 shrink-0" />
             {isSidebarOpen && <span className="whitespace-nowrap animate-in fade-in duration-300">Dashboard</span>}
           </Link>
-          <Link href="/warga" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/warga" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
+          <Link onClick={handleNavClick} href="/warga" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/warga" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
             {pathname === "/warga" && <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-md"></div>}
             <Users className="w-5 h-5 shrink-0" />
             {isSidebarOpen && <span className="whitespace-nowrap animate-in fade-in duration-300">Data Penduduk</span>}
           </Link>
-          <Link href="/wilayah" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/wilayah" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
+          <Link onClick={handleNavClick} href="/wilayah" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/wilayah" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
             {pathname === "/wilayah" && <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-md"></div>}
             <Map className="w-5 h-5 shrink-0" />
             {isSidebarOpen && <span className="whitespace-nowrap animate-in fade-in duration-300">Data Wilayah</span>}
           </Link>
           {(role === "SUPER_ADMIN" || role === "ADMIN" || role === "RT_RW") && (
-            <Link href="/layanan" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/layanan" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
+            <Link onClick={handleNavClick} href="/layanan" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/layanan" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
               {pathname === "/layanan" && <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-md"></div>}
               <Briefcase className="w-5 h-5 shrink-0" />
               {isSidebarOpen && <span className="whitespace-nowrap animate-in fade-in duration-300">Layanan Desa</span>}
             </Link>
           )}
           {(role === "SUPER_ADMIN" || role === "ADMIN" || role === "RT_RW") && (
-            <Link href="/peristiwa" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/peristiwa" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
+            <Link onClick={handleNavClick} href="/peristiwa" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/peristiwa" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
               {pathname === "/peristiwa" && <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-md"></div>}
               <FileText className="w-5 h-5 shrink-0" />
               {isSidebarOpen && <span className="whitespace-nowrap animate-in fade-in duration-300">Catat Peristiwa</span>}
             </Link>
           )}
           {(role === "SUPER_ADMIN" || role === "ADMIN") && (
-            <Link href="/verifikasi" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/verifikasi" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
+            <Link onClick={handleNavClick} href="/verifikasi" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/verifikasi" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
               {pathname === "/verifikasi" && <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-md"></div>}
               <ShieldCheck className="w-5 h-5 shrink-0" />
               {isSidebarOpen && <span className="whitespace-nowrap animate-in fade-in duration-300">Verifikasi Data</span>}
             </Link>
           )}
-          <Link href="/laporan" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/laporan" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
+          <Link onClick={handleNavClick} href="/laporan" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/laporan" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
             {pathname === "/laporan" && <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-md"></div>}
             <BarChart2 className="w-5 h-5 shrink-0" />
             {isSidebarOpen && <span className="whitespace-nowrap animate-in fade-in duration-300">Laporan</span>}
           </Link>
           {role === "SUPER_ADMIN" && (
-            <Link href="/pengaturan" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/pengaturan" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
+            <Link onClick={handleNavClick} href="/pengaturan" className={cn("flex items-center gap-3 py-3 text-sm font-medium rounded-md relative transition-colors", pathname === "/pengaturan" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900", isSidebarOpen ? "px-3" : "justify-center")}>
               {pathname === "/pengaturan" && <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-md"></div>}
               <Settings className="w-5 h-5 shrink-0" />
               {isSidebarOpen && <span className="whitespace-nowrap animate-in fade-in duration-300">Pengaturan</span>}
@@ -109,7 +115,7 @@ export function Sidebar() {
           </button>
         )}
         <div className="space-y-2">
-          <Link href="/bantuan" className={cn("flex items-center gap-3 py-2 text-sm font-medium rounded-md relative transition-colors", pathname === "/bantuan" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50", isSidebarOpen ? "px-3" : "justify-center")}>
+          <Link onClick={handleNavClick} href="/bantuan" className={cn("flex items-center gap-3 py-2 text-sm font-medium rounded-md relative transition-colors", pathname === "/bantuan" ? "bg-primary/10 text-primary" : "text-gray-600 hover:bg-gray-50", isSidebarOpen ? "px-3" : "justify-center")}>
             {pathname === "/bantuan" && <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-md"></div>}
             <HelpCircle className="w-5 h-5 shrink-0" />
             {isSidebarOpen && <span className="whitespace-nowrap animate-in fade-in duration-300">Bantuan</span>}
